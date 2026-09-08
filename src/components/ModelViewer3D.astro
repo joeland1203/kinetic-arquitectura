@@ -1,0 +1,688 @@
+---
+// src/components/ModelViewer3D.astro
+---
+
+<section id="modelo-3d" class="relative w-full min-h-screen bg-[#080808] text-neutral-100 overflow-hidden py-16 md:py-24 px-6 md:px-12 flex flex-col justify-center border-t border-white/[0.06]">
+	<!-- Fondo atmosférico con gradiente radial arquitectónico -->
+	<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_35%,rgba(28,28,35,0.45)_0%,rgba(8,8,8,0.95)_75%,#080808_100%)]"></div>
+
+	<!-- Rejilla y cruces de alineación isométrica técnica -->
+	<div class="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#ffffff04_1px,transparent_1px),linear-gradient(to_bottom,#ffffff04_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+	<div class="pointer-events-none absolute top-10 left-10 font-mono text-[9px] tracking-[0.3em] text-neutral-600 uppercase select-none">
+		KINETIC LAB // VOLUMETRIC VIEWPORT 0.98M VERTS
+	</div>
+	<div class="pointer-events-none absolute top-10 right-10 font-mono text-[9px] tracking-[0.3em] text-neutral-600 uppercase select-none hidden sm:block">
+		MESHOPT // EXT_meshopt_compression READY
+	</div>
+
+	<!-- Contenedor Principal en Grid Responsive -->
+	<div class="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+		
+		<!-- Columna Izquierda: Tarjeta Editorial Técnica Minimalista "KINETIC" -->
+		<div class="lg:col-span-5 flex flex-col justify-center space-y-6">
+			
+			<!-- Encabezado de Proyecto -->
+			<div class="space-y-3">
+				<div class="inline-flex items-center space-x-2.5 px-3 py-1 border border-white/10 bg-white/[0.02]">
+					<span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+					<span class="font-mono text-[10px] tracking-[0.25em] text-neutral-400 uppercase">
+						KINETIC LAB // PROYECTO EXPERIMENTAL 04
+					</span>
+				</div>
+
+				<h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-white leading-[1.1]">
+					PROYECTO ISLA<br />
+					<span class="text-neutral-500">FLOTANTE</span>
+				</h2>
+
+				<p class="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed max-w-md pt-1">
+					Exploración volumétrica de una residencia modular sobre espejo de agua, optimizada estructuralmente en voladizo para cimentación no invasiva.
+				</p>
+			</div>
+
+			<!-- Tags Requeridos -->
+			<div class="flex flex-wrap gap-2 pt-1">
+				<span class="px-3 py-1 text-[10px] font-mono tracking-wider text-neutral-300 bg-white/[0.03] border border-white/10">
+					Residencia Bioclimática
+				</span>
+				<span class="px-3 py-1 text-[10px] font-mono tracking-wider text-white bg-white/[0.08] border border-white/20">
+					Render Volumétrico 3D
+				</span>
+				<span class="px-3 py-1 text-[10px] font-mono tracking-wider text-neutral-300 bg-white/[0.03] border border-white/10">
+					Estructura en Cantilever
+				</span>
+			</div>
+
+			<!-- Especificaciones Breves (Grid Técnico) -->
+			<div class="grid grid-cols-2 gap-4 py-4 border-y border-white/10 font-mono">
+				<div class="space-y-1">
+					<span class="text-[10px] uppercase tracking-[0.2em] text-neutral-500 block">Área de Desplante</span>
+					<span class="text-xs sm:text-sm font-semibold text-white tracking-wide block">420 m² en Voladizo</span>
+					<span class="text-[10px] text-neutral-400 font-sans block">Estructura flotante autosoportada</span>
+				</div>
+				<div class="space-y-1">
+					<span class="text-[10px] uppercase tracking-[0.2em] text-neutral-500 block">Paisajismo</span>
+					<span class="text-xs sm:text-sm font-semibold text-white tracking-wide block">Bioma Regenerativo</span>
+					<span class="text-[10px] text-neutral-400 font-sans block">Simbiosis lacustre y humedal</span>
+				</div>
+				<div class="space-y-1 col-span-2 pt-2 border-t border-white/[0.05]">
+					<span class="text-[10px] uppercase tracking-[0.2em] text-neutral-500 block">Materiales Sustentables</span>
+					<span class="text-xs sm:text-sm font-semibold text-neutral-200 tracking-wide block">Polímeros Bioclimáticos & Madera Tectónica Certificada</span>
+					<span class="text-[10px] text-neutral-400 font-sans block">Captación pasiva, aislación térmica de baja transmitancia y ciclado 100% de agua</span>
+				</div>
+			</div>
+
+			<!-- Botones de Acción y Controles Rápidos -->
+			<div class="flex flex-col sm:flex-row gap-3 pt-2">
+				<button id="openModalBtn" type="button" class="cursor-pointer inline-flex items-center justify-center space-x-2 px-6 py-3.5 text-xs font-semibold tracking-[0.2em] uppercase text-black bg-white hover:bg-neutral-200 transition-all duration-200 rounded-full shadow-lg shadow-white/10 active:scale-98">
+					<span>Explorar Modelo / Ficha Técnica</span>
+					<span class="text-sm">↗</span>
+				</button>
+			</div>
+
+			<!-- Ayuda interactiva de navegación 3D -->
+			<div class="flex items-center space-x-3 text-[11px] font-mono text-neutral-500">
+				<span class="inline-block w-2 h-2 rounded-full bg-emerald-500/80 animate-pulse"></span>
+				<span>Arrastra con clic primario para orbitar • Rueda de scroll para zoom</span>
+			</div>
+		</div>
+
+		<!-- Columna Derecha: Visor 3D Interactivo de Estudio Arquitectónico -->
+		<div class="lg:col-span-7 w-full flex flex-col items-center">
+			
+			<div id="canvasWrapper" class="relative w-full aspect-[4/3] sm:aspect-[16/11] lg:aspect-[16/12] max-h-[680px] overflow-hidden bg-neutral-950 border border-white/10">
+				
+				<!-- Canvas de Three.js -->
+				<canvas id="modelCanvas" class="w-full h-full block cursor-grab active:cursor-grabbing outline-none select-none"></canvas>
+
+				<!-- Gradiente sutil para profundidad de campo -->
+				<div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#080808]/80 via-transparent to-[#080808]/20"></div>
+
+				<!-- Barra Superior del Visor (HUD Minimalista) -->
+				<div class="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none z-10">
+					<div class="inline-flex items-center space-x-2 px-3 py-1 bg-black/70 border border-white/10 text-[10px] font-mono tracking-widest text-neutral-300">
+						<span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+						<span>KINETIC 3D VIEWPORT</span>
+					</div>
+
+					<!-- Botones flotantes de control de cámara -->
+					<div class="flex items-center space-x-2 pointer-events-auto">
+						<button id="toggleAutoRotateBtn" type="button" title="Pausar / Reanudar Auto-rotación" class="cursor-pointer px-3 py-1 bg-black/70 hover:bg-neutral-900 border border-white/10 hover:border-white/20 text-[10px] font-mono text-neutral-300 transition-colors flex items-center space-x-1.5">
+							<span id="rotateIcon" class="inline-block transition-transform duration-300">⟳</span>
+							<span id="rotateLabel">Auto-rotación ON</span>
+						</button>
+						<button id="resetCameraBtn" type="button" title="Restablecer Posición de Cámara" class="cursor-pointer px-3 py-1 bg-black/70 hover:bg-neutral-900 border border-white/10 hover:border-white/20 text-[10px] font-mono text-neutral-300 transition-colors flex items-center space-x-1">
+							<span>↺</span>
+							<span class="hidden sm:inline">Reset</span>
+						</button>
+					</div>
+				</div>
+
+				<!-- Barra Inferior del Visor (Datos y Métricas en Tiempo Real) -->
+				<div class="absolute bottom-4 left-4 right-4 flex items-center justify-between pointer-events-none z-10 font-mono text-[10px] text-neutral-400">
+					<div class="bg-black/70 px-3 py-1 border border-white/10 hidden sm:flex items-center space-x-2">
+						<span class="text-neutral-500">MALLA:</span>
+						<span class="text-neutral-200">985K Vértices</span>
+						<span class="text-neutral-600">|</span>
+						<span class="text-neutral-500">FORMATO:</span>
+						<span class="text-white">GLB Meshopt</span>
+					</div>
+
+					<div class="bg-black/70 px-3 py-1 border border-white/10 ml-auto flex items-center space-x-1.5">
+						<span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+						<span class="text-neutral-300 tracking-wider">ÓRBITA 360°</span>
+					</div>
+				</div>
+
+				<!-- Pantalla de Carga y Descompresión con Meshoptimizer -->
+				<div id="loaderOverlay" class="absolute inset-0 z-20 flex flex-col items-center justify-center bg-[#080808]/95 transition-opacity duration-500">
+					<div class="relative flex items-center justify-center mb-4">
+						<div class="w-10 h-10 border border-white/10 border-t-white animate-spin"></div>
+						<div class="absolute font-mono text-[9px] text-neutral-400" id="loadingPercentText">0%</div>
+					</div>
+					<div class="font-mono text-[10px] tracking-[0.25em] text-white uppercase mb-1">
+						Cargando Malla 3D
+					</div>
+					<div class="font-mono text-[10px] tracking-widest text-neutral-500 text-center max-w-xs" id="loaderStatusText">
+						Descomprimiendo con MeshoptDecoder...
+					</div>
+					<div class="w-48 h-0.5 bg-neutral-900 mt-3 overflow-hidden border border-white/10">
+						<div id="loadingBar" class="h-full bg-white w-0 transition-all duration-200"></div>
+					</div>
+				</div>
+
+				<!-- Mensaje de Error si falla la carga -->
+				<div id="errorOverlay" class="hidden absolute inset-0 z-20 flex-col items-center justify-center bg-[#080808]/95 backdrop-blur-md p-6 text-center">
+					<div class="w-10 h-10 rounded-full border border-rose-500/40 bg-rose-950/30 flex items-center justify-center text-rose-400 mb-3 text-sm">✕</div>
+					<h3 class="font-mono text-sm tracking-wider text-rose-300 uppercase mb-1">Error al Cargar Modelo</h3>
+					<p id="errorMessage" class="text-xs text-neutral-400 max-w-sm mb-4">No se pudo inicializar la malla 3D.</p>
+					<button id="retryLoadBtn" type="button" class="px-4 py-2 text-xs font-mono tracking-widest uppercase bg-white/10 hover:bg-white/20 text-white rounded-full border border-white/20 transition-colors">Reintentar</button>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+	<!-- Modal / Drawer de Ficha Técnica Completa -->
+	<div id="techModal" class="fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-300 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 md:p-10">
+		<div class="relative w-full max-w-3xl bg-neutral-950 border border-white/15 rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl shadow-black overflow-y-auto max-h-[90vh]">
+			
+			<!-- Botón Cerrar -->
+			<button id="closeModalBtn" type="button" class="absolute top-6 right-6 w-9 h-9 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 text-neutral-400 hover:text-white flex items-center justify-center text-sm transition-colors cursor-pointer" aria-label="Cerrar Ficha Técnica">
+				✕
+			</button>
+
+			<!-- Contenido Ficha Técnica -->
+			<div class="space-y-6">
+				<div class="space-y-2">
+					<div class="font-mono text-[10px] tracking-[0.3em] text-cyan-400 uppercase">
+						KINETIC ARCHITECTURAL SPECIFICATIONS // REV 2026.04
+					</div>
+					<h3 class="font-display text-2xl sm:text-3xl font-bold text-white">
+						Ficha Técnica // Proyecto Isla Flotante
+					</h3>
+					<p class="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed">
+						Memoria descriptiva de ingeniería para habitabilidad autosuficiente en superficies de agua interiores o zonas costeras protegidas.
+					</p>
+				</div>
+
+				<!-- Grid de Parámetros de Ingeniería -->
+				<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs">
+					<div class="p-4 rounded-xl bg-white/[0.02] border border-white/10 space-y-1">
+						<span class="text-neutral-500 uppercase tracking-widest text-[10px]">Estructura Portante</span>
+						<div class="text-white font-semibold">Cantilever en Aleación Tectónica</div>
+						<p class="text-neutral-400 font-sans text-[11px] pt-1">Voladizos de 14.5 m con anclaje de tensión dinámica equilibrada.</p>
+					</div>
+					<div class="p-4 rounded-xl bg-white/[0.02] border border-white/10 space-y-1">
+						<span class="text-neutral-500 uppercase tracking-widest text-[10px]">Flotabilidad & Cimentación</span>
+						<div class="text-white font-semibold">Pontones Celulares EPS + Hormigón Marino</div>
+						<p class="text-neutral-400 font-sans text-[11px] pt-1">Capacidad de carga útil: 180 toneladas con estabilización giroscópica.</p>
+					</div>
+					<div class="p-4 rounded-xl bg-white/[0.02] border border-white/10 space-y-1">
+						<span class="text-neutral-500 uppercase tracking-widest text-[10px]">Balance Hídrico</span>
+						<div class="text-white font-semibold">Desalinización & Fito-depuración</div>
+						<p class="text-neutral-400 font-sans text-[11px] pt-1">Tratamiento biológico 100% en circuito cerrado con juncos filtrantes.</p>
+					</div>
+					<div class="p-4 rounded-xl bg-white/[0.02] border border-white/10 space-y-1">
+						<span class="text-neutral-500 uppercase tracking-widest text-[10px]">Captación Energética</span>
+						<div class="text-white font-semibold">Piel Fotovoltaica Integrada (BIPV)</div>
+						<p class="text-neutral-400 font-sans text-[11px] pt-1">Generación pico de 38.4 kWp con almacenamiento en baterías de estado sólido.</p>
+					</div>
+				</div>
+
+				<!-- Tabla de Acabados y Materialidad -->
+				<div class="space-y-2 pt-2">
+					<div class="font-mono text-[11px] tracking-wider text-neutral-300 uppercase">Matriz de Materialidad y Resistencia</div>
+					<div class="overflow-x-auto">
+						<table class="w-full text-left font-mono text-[11px] border-collapse">
+							<thead>
+								<tr class="border-b border-white/10 text-neutral-500">
+									<th class="py-2 pr-4 font-normal">COMPONENTE</th>
+									<th class="py-2 px-4 font-normal">MATERIAL</th>
+									<th class="py-2 px-4 font-normal">RESISTENCIA</th>
+									<th class="py-2 pl-4 font-normal text-right">CERTIFICACIÓN</th>
+								</tr>
+							</thead>
+							<tbody class="divide-y divide-white/5 text-neutral-300">
+								<tr>
+									<td class="py-2 pr-4 text-white font-medium">Cubierta Superior</td>
+									<td class="py-2 px-4">Polímero ETFE bicapa autolimpiante</td>
+									<td class="py-2 px-4">Vientos 210 km/h</td>
+									<td class="py-2 pl-4 text-right text-cyan-400">ISO 14040</td>
+								</tr>
+								<tr>
+									<td class="py-2 pr-4 text-white font-medium">Decking Exterior</td>
+									<td class="py-2 px-4">Madera de Teca cultivada termotratada</td>
+									<td class="py-2 px-4">Grado Marino Clase IV</td>
+									<td class="py-2 pl-4 text-right text-cyan-400">FSC 100%</td>
+								</tr>
+								<tr>
+									<td class="py-2 pr-4 text-white font-medium">Vidriería Perimetral</td>
+									<td class="py-2 px-4">Vidrio electrocrómico de control solar triple</td>
+									<td class="py-2 px-4">U-Value 0.58 W/m²K</td>
+									<td class="py-2 pl-4 text-right text-cyan-400">Cradle to Cradle</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<!-- Footer del Modal con botón de cierre / contacto -->
+				<div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-white/10">
+					<div class="text-[10px] font-mono text-neutral-500">
+						DOCUMENTO CONFIDENCIAL // KINETIC STUDIO 2026
+					</div>
+					<div class="flex items-center space-x-3 w-full sm:w-auto">
+						<button id="closeModalFooterBtn" type="button" class="cursor-pointer w-full sm:w-auto px-5 py-2.5 rounded-full border border-white/20 text-xs font-mono uppercase tracking-widest text-neutral-300 hover:bg-white/10 transition-colors">
+							Cerrar
+						</button>
+						<a href="#contacto" id="modalContactBtn" class="cursor-pointer w-full sm:w-auto px-5 py-2.5 rounded-full bg-white hover:bg-neutral-200 text-xs font-mono uppercase tracking-widest text-black font-semibold transition-colors text-center">
+							Contactar Firma
+						</a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Script de Three.js con GLTFLoader, OrbitControls y MeshoptDecoder -->
+<script>
+	import * as THREE from 'three';
+	import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+	import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+	import { MeshoptDecoder } from 'meshoptimizer';
+
+	// Referencias del DOM
+	const canvas = document.getElementById('modelCanvas') as HTMLCanvasElement;
+	const canvasWrapper = document.getElementById('canvasWrapper') as HTMLDivElement;
+	const loaderOverlay = document.getElementById('loaderOverlay') as HTMLDivElement;
+	const loadingPercentText = document.getElementById('loadingPercentText') as HTMLDivElement;
+	const loadingBar = document.getElementById('loadingBar') as HTMLDivElement;
+	const loaderStatusText = document.getElementById('loaderStatusText') as HTMLDivElement;
+	const errorOverlay = document.getElementById('errorOverlay') as HTMLDivElement;
+	const errorMessage = document.getElementById('errorMessage') as HTMLParagraphElement;
+	const retryLoadBtn = document.getElementById('retryLoadBtn') as HTMLButtonElement;
+
+	const toggleAutoRotateBtn = document.getElementById('toggleAutoRotateBtn') as HTMLButtonElement;
+	const rotateIcon = document.getElementById('rotateIcon') as HTMLSpanElement;
+	const rotateLabel = document.getElementById('rotateLabel') as HTMLSpanElement;
+	const resetCameraBtn = document.getElementById('resetCameraBtn') as HTMLButtonElement;
+
+	// Modal
+	const techModal = document.getElementById('techModal') as HTMLDivElement;
+	const openModalBtn = document.getElementById('openModalBtn') as HTMLButtonElement;
+	const closeModalBtn = document.getElementById('closeModalBtn') as HTMLButtonElement;
+	const closeModalFooterBtn = document.getElementById('closeModalFooterBtn') as HTMLButtonElement;
+	const modalContactBtn = document.getElementById('modalContactBtn') as HTMLAnchorElement;
+
+	// Variables de Escena Three.js
+	let scene: THREE.Scene;
+	let camera: THREE.PerspectiveCamera;
+	let renderer: THREE.WebGLRenderer;
+	let controls: OrbitControls;
+	let modelGroup: THREE.Group | null = null;
+	let animationFrameId: number;
+	let isAutoRotating = true;
+
+	const initialCameraPos = new THREE.Vector3();
+	const initialCameraTarget = new THREE.Vector3(0, 0, 0);
+
+	function updateAutoRotateUI(active: boolean) {
+		isAutoRotating = active;
+		if (controls) {
+			controls.autoRotate = active;
+		}
+		if (rotateLabel) {
+			rotateLabel.textContent = active ? 'Auto-rotación ON' : 'Auto-rotación OFF';
+		}
+		if (rotateIcon) {
+			rotateIcon.style.transform = active ? 'rotate(180deg)' : 'rotate(0deg)';
+		}
+	}
+
+	function initScene() {
+		if (!canvas || !canvasWrapper) return;
+
+		// 1. Crear Escena
+		scene = new THREE.Scene();
+
+		// 2. Crear Cámara con campo de visión arquitectónico
+		const width = canvasWrapper.clientWidth;
+		const height = canvasWrapper.clientHeight;
+		camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
+
+		// 3. Crear Renderer optimizado con tone mapping
+		renderer = new THREE.WebGLRenderer({
+			canvas,
+			antialias: true,
+			alpha: true,
+			powerPreference: 'high-performance'
+		});
+		renderer.setSize(width, height);
+		renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+		renderer.toneMapping = THREE.ACESFilmicToneMapping;
+		renderer.toneMappingExposure = 1.2;
+		renderer.outputColorSpace = THREE.SRGBColorSpace;
+		renderer.shadowMap.enabled = true;
+		renderer.shadowMap.type = THREE.PCFShadowMap;
+
+		// 4. Iluminación de Estudio Arquitectónico
+		// - Luz ambiental suave
+		const ambientLight = new THREE.AmbientLight(0xffffff, 1.1);
+		scene.add(ambientLight);
+
+		// - Hemisphere light para dar calidez al cenit y sombra fría en la base
+		const hemiLight = new THREE.HemisphereLight(0xfff6ea, 0x141824, 0.7);
+		scene.add(hemiLight);
+
+		// - Directional Light Cálida (Key Light - Sol rasante arquitectónico que define volúmenes)
+		const keyLight = new THREE.DirectionalLight(0xffecd2, 2.6);
+		keyLight.position.set(4.5, 7.5, 4.5);
+		keyLight.castShadow = true;
+		keyLight.shadow.mapSize.width = 2048;
+		keyLight.shadow.mapSize.height = 2048;
+		keyLight.shadow.camera.near = 0.5;
+		keyLight.shadow.camera.far = 25;
+		keyLight.shadow.camera.left = -2.5;
+		keyLight.shadow.camera.right = 2.5;
+		keyLight.shadow.camera.top = 2.5;
+		keyLight.shadow.camera.bottom = -2.5;
+		keyLight.shadow.bias = -0.0003;
+		scene.add(keyLight);
+
+		// - Directional Light Fría de Relleno (Fill Light - Equilibra sombras)
+		const fillLight = new THREE.DirectionalLight(0x90caf9, 1.3);
+		fillLight.position.set(-6, 3, -4);
+		scene.add(fillLight);
+
+		// - Directional Light de Contorno (Rim Light - Despega la silueta del fondo oscuro)
+		const rimLight = new THREE.DirectionalLight(0xffffff, 1.1);
+		rimLight.position.set(0, 4, -6);
+		scene.add(rimLight);
+
+		// 5. Configurar OrbitControls con Damping suave
+		controls = new OrbitControls(camera, renderer.domElement);
+		controls.enableDamping = true;
+		controls.dampingFactor = 0.05;
+		controls.screenSpacePanning = true;
+		controls.zoomSpeed = 0.7;
+
+		// Auto-rotación inicial
+		controls.autoRotate = true;
+		controls.autoRotateSpeed = 0.85;
+
+		// El auto-rotate se detiene de inmediato cuando el usuario interactúa manualmente
+		controls.addEventListener('start', () => {
+			updateAutoRotateUI(false);
+		});
+
+		// 6. Bucle de animación
+		function animate() {
+			animationFrameId = requestAnimationFrame(animate);
+			controls.update();
+			renderer.render(scene, camera);
+		}
+		animate();
+
+		// 7. Manejo responsive mediante ResizeObserver
+		const resizeObserver = new ResizeObserver(() => {
+			if (!canvasWrapper || !renderer || !camera) return;
+			const newWidth = canvasWrapper.clientWidth;
+			const newHeight = canvasWrapper.clientHeight;
+			if (newWidth === 0 || newHeight === 0) return;
+
+			camera.aspect = newWidth / newHeight;
+			camera.updateProjectionMatrix();
+			renderer.setSize(newWidth, newHeight);
+			renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+		});
+		resizeObserver.observe(canvasWrapper);
+	}
+
+	async function loadModel() {
+		// Mostrar loader
+		if (loaderOverlay) {
+			loaderOverlay.classList.remove('opacity-0', 'pointer-events-none');
+			loaderOverlay.style.display = 'flex';
+		}
+		if (errorOverlay) {
+			errorOverlay.classList.add('hidden');
+			errorOverlay.style.display = 'none';
+		}
+		if (loadingBar) loadingBar.style.width = '10%';
+		if (loadingPercentText) loadingPercentText.textContent = '10%';
+
+		try {
+			if (loaderStatusText) {
+				loaderStatusText.textContent = 'Inicializando MeshoptDecoder...';
+			}
+
+			// Asegurar que el decodificador de Meshopt esté listo
+			await MeshoptDecoder.ready;
+
+			if (loadingBar) loadingBar.style.width = '30%';
+			if (loadingPercentText) loadingPercentText.textContent = '30%';
+
+			if (loaderStatusText) {
+				loaderStatusText.textContent = 'Descargando geometría comprimida (12.6 MB)...';
+			}
+
+			const loader = new GLTFLoader();
+			// Asignar el decodificador para descomprimir EXT_meshopt_compression
+			loader.setMeshoptDecoder(MeshoptDecoder);
+
+			loader.load(
+				'/models/casa_flotante.glb',
+				(gltf) => {
+					if (loadingBar) loadingBar.style.width = '85%';
+					if (loadingPercentText) loadingPercentText.textContent = '85%';
+					if (loaderStatusText) {
+						loaderStatusText.textContent = 'Calculando volúmenes y centrando escena...';
+					}
+
+					const model = gltf.scene;
+
+					// Calcular BoundingBox y BoundingSphere para centrado automático exacto
+					const box = new THREE.Box3().setFromObject(model);
+					const center = box.getCenter(new THREE.Vector3());
+					const size = box.getSize(new THREE.Vector3());
+					const sphere = box.getBoundingSphere(new THREE.Sphere());
+
+					// Centrar geometría en el origen local (0, 0, 0)
+					model.position.x = -center.x;
+					model.position.y = -center.y;
+					model.position.z = -center.z;
+
+					// Configurar sombras y propiedades de material
+					model.traverse((child) => {
+						if ((child as THREE.Mesh).isMesh) {
+							child.castShadow = true;
+							child.receiveShadow = true;
+
+							const mesh = child as THREE.Mesh;
+							if (mesh.material) {
+								const mat = mesh.material as THREE.MeshStandardMaterial;
+								mat.roughness = Math.min(mat.roughness ?? 0.5, 0.65);
+								mat.needsUpdate = true;
+							}
+						}
+					});
+
+					// Crear grupo contenedor en la escena
+					if (modelGroup) {
+						scene.remove(modelGroup);
+					}
+					modelGroup = new THREE.Group();
+					modelGroup.add(model);
+					scene.add(modelGroup);
+
+					// Agregar plano de sombra de contacto sutil en la base
+					const contactRadius = Math.max(size.x, size.z) * 1.4;
+					const contactGeo = new THREE.PlaneGeometry(contactRadius, contactRadius);
+					const canvasShadow = document.createElement('canvas');
+					canvasShadow.width = 256;
+					canvasShadow.height = 256;
+					const ctxShadow = canvasShadow.getContext('2d')!;
+					const grad = ctxShadow.createRadialGradient(128, 128, 0, 128, 128, 128);
+					grad.addColorStop(0, 'rgba(0, 0, 0, 0.7)');
+					grad.addColorStop(0.35, 'rgba(0, 0, 0, 0.35)');
+					grad.addColorStop(0.7, 'rgba(0, 0, 0, 0.1)');
+					grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+					ctxShadow.fillStyle = grad;
+					ctxShadow.fillRect(0, 0, 256, 256);
+
+					const shadowTex = new THREE.CanvasTexture(canvasShadow);
+					const shadowMat = new THREE.MeshBasicMaterial({
+						map: shadowTex,
+						transparent: true,
+						depthWrite: false,
+						opacity: 0.6
+					});
+					const shadowPlane = new THREE.Mesh(contactGeo, shadowMat);
+					shadowPlane.rotation.x = -Math.PI / 2;
+					// Situar ligeramente por debajo del punto inferior
+					shadowPlane.position.y = -size.y / 2 - 0.04;
+					scene.add(shadowPlane);
+
+					// Ajuste de encuadre óptico para que el modelo se aprecie al doble de escala inicial
+					const radius = Math.max(sphere.radius, size.length() / 2);
+					const fovRad = camera.fov * (Math.PI / 180);
+					const aspect = camera.aspect;
+					// Adaptar cálculo de FOV si la pantalla es vertical para evitar recortes
+					const effectiveFov = aspect < 1 
+						? 2 * Math.atan(Math.tan(fovRad / 2) / aspect) 
+						: fovRad;
+					// Factor reducido de 1.25 a 0.65 para duplicar la presencia y volumen visual del objeto
+					const distance = (radius / Math.sin(effectiveFov / 2)) * 0.65;
+
+					initialCameraPos.set(distance * 0.92, distance * 0.48, distance * 0.92);
+					camera.position.copy(initialCameraPos);
+					camera.lookAt(0, 0, 0);
+
+					// Límites de órbita adaptados a la nueva escala
+					controls.target.set(0, 0, 0);
+					controls.minDistance = radius * 0.45; // Permite acercarse a ver detalles arquitectónicos
+					controls.maxDistance = distance * 3.5;
+					// Permitir inclinación desde casi cenital hasta poco debajo del ecuador
+					controls.minPolarAngle = Math.PI * 0.08;
+					controls.maxPolarAngle = Math.PI / 2 + 0.08;
+					controls.update();
+
+					// Completar carga
+					if (loadingBar) loadingBar.style.width = '100%';
+					if (loadingPercentText) loadingPercentText.textContent = '100%';
+					if (loaderStatusText) {
+						loaderStatusText.textContent = '¡Modelo listo!';
+					}
+
+					setTimeout(() => {
+						if (loaderOverlay) {
+							loaderOverlay.classList.add('opacity-0', 'pointer-events-none');
+							setTimeout(() => {
+								loaderOverlay.style.display = 'none';
+							}, 500);
+						}
+					}, 250);
+				},
+				(progress) => {
+					if (progress.lengthComputable && progress.total > 0) {
+						const pct = Math.round((progress.loaded / progress.total) * 75) + 15;
+						if (loadingBar) loadingBar.style.width = `${pct}%`;
+						if (loadingPercentText) loadingPercentText.textContent = `${pct}%`;
+					}
+				},
+				(error) => {
+					console.error('Error al cargar casa_flotante.glb:', error);
+					showError('No se pudo decodificar el modelo 3D o sus mallas comprimidas.');
+				}
+			);
+		} catch (err: any) {
+			console.error('Error durante la inicialización del modelo:', err);
+			showError(err?.message || 'Fallo de inicialización WebGL.');
+		}
+	}
+
+	function showError(msg: string) {
+		if (loaderOverlay) {
+			loaderOverlay.style.display = 'none';
+		}
+		if (errorOverlay && errorMessage) {
+			errorMessage.textContent = msg;
+			errorOverlay.classList.remove('hidden');
+			errorOverlay.style.display = 'flex';
+		}
+	}
+
+	// Interacción con UI de controles
+	if (toggleAutoRotateBtn) {
+		toggleAutoRotateBtn.addEventListener('click', () => {
+			updateAutoRotateUI(!isAutoRotating);
+		});
+	}
+
+	if (resetCameraBtn) {
+		resetCameraBtn.addEventListener('click', () => {
+			if (!camera || !controls) return;
+			// Transición suave de posición
+			const startPos = camera.position.clone();
+			const targetPos = initialCameraPos.clone();
+			const startTime = performance.now();
+			const duration = 800; // ms
+
+			function step(now: number) {
+				const elapsed = now - startTime;
+				const t = Math.min(1, elapsed / duration);
+				// Curva easeOutCubic
+				const ease = 1 - Math.pow(1 - t, 3);
+
+				camera.position.lerpVectors(startPos, targetPos, ease);
+				controls.target.lerpVectors(controls.target, initialCameraTarget, ease);
+				controls.update();
+
+				if (t < 1) {
+					requestAnimationFrame(step);
+				}
+			}
+			requestAnimationFrame(step);
+		});
+	}
+
+	if (retryLoadBtn) {
+		retryLoadBtn.addEventListener('click', () => {
+			loadModel();
+		});
+	}
+
+	// Gestión del Modal Ficha Técnica
+	function openModal() {
+		if (!techModal) return;
+		techModal.classList.remove('hidden');
+		// Forzar reflow para animación
+		void techModal.offsetWidth;
+		techModal.classList.remove('opacity-0');
+		document.body.style.overflow = 'hidden';
+	}
+
+	function closeModal() {
+		if (!techModal) return;
+		techModal.classList.add('opacity-0');
+		setTimeout(() => {
+			techModal.classList.add('hidden');
+			document.body.style.overflow = '';
+		}, 300);
+	}
+
+	if (openModalBtn) openModalBtn.addEventListener('click', openModal);
+	if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+	if (closeModalFooterBtn) closeModalFooterBtn.addEventListener('click', closeModal);
+	if (modalContactBtn) modalContactBtn.addEventListener('click', closeModal);
+
+	// Cerrar al presionar Escape o clic fuera
+	window.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape' && techModal && !techModal.classList.contains('hidden')) {
+			closeModal();
+		}
+	});
+
+	if (techModal) {
+		techModal.addEventListener('click', (e) => {
+			if (e.target === techModal) {
+				closeModal();
+			}
+		});
+	}
+
+	// Inicializar al cargar el DOM
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', () => {
+			initScene();
+			loadModel();
+		});
+	} else {
+		initScene();
+		loadModel();
+	}
+</script>

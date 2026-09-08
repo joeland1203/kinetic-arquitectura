@@ -1,0 +1,252 @@
+---
+// src/components/DesarrolloSection.astro
+---
+
+<section id="desarrollo" class="relative w-full bg-[#080808] text-neutral-100 py-24 md:py-32 px-6 md:px-12 border-t border-white/10">
+	<!-- Retícula técnica arquitectónica sobria -->
+	<div class="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#ffffff04_1px,transparent_1px),linear-gradient(to_bottom,#ffffff04_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+
+	<div class="max-w-7xl mx-auto relative z-10 space-y-16 md:space-y-24">
+		
+		<!-- Encabezado Monográfico Editorial -->
+		<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 border-b border-white/10 pb-10">
+			<div class="space-y-3 max-w-2xl">
+				<div class="font-mono text-[10px] tracking-[0.3em] text-neutral-400 uppercase">
+					01 / DESARROLLO PATRIMONIAL & VERTICAL
+				</div>
+				<h2 class="font-display text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-white leading-[1.05]">
+					EFICIENCIA ESTRUCTURAL &<br />
+					<span class="text-neutral-500">DENSIDAD URBANA</span>
+				</h2>
+				<p class="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed max-w-xl pt-1">
+					Integración de cálculo volumétrico, coeficientes de esbeltez optimizados y maximización de área rentable (NLA). Cada desarrollo resuelve la ecuación entre viabilidad de inversión y permanencia constructiva.
+				</p>
+			</div>
+
+			<!-- Metadatos de Archivo Técnico -->
+			<div class="flex flex-col font-mono text-[11px] text-neutral-500 space-y-1 border-l border-white/10 pl-6 lg:pl-8">
+				<span class="text-neutral-300 tracking-wider">CÉDULA DE PROYECTOS // REGISTRO 2024–2026</span>
+				<span>TIPOLOGÍAS: CORPORATIVO VERTICAL • VOLADIZOS • BIOCLIMÁTICO</span>
+				<span>SISTEMA DE CALIDAD: ISO 9001 / BIM PROTOCOL LOD 400</span>
+			</div>
+		</div>
+
+		<!-- LAYOUT ASIMÉTRICO EDITORIAL (MONOGRAFÍA ARQUITECTÓNICA) -->
+		<div class="space-y-12">
+			
+			<!-- PROYECTO 01 (Principal / Desglose Técnico Completo en 12 Columnas) -->
+			<div class="border border-white/10 bg-[#111111] grid grid-cols-1 lg:grid-cols-12 overflow-hidden">
+				
+				<!-- Columna 1: Ficha Técnica & Memoria Descriptiva (7 Cols) -->
+				<div class="lg:col-span-7 p-8 sm:p-12 flex flex-col justify-between space-y-8 border-b lg:border-b-0 lg:border-r border-white/10">
+					<div class="space-y-4">
+						<div class="flex items-center justify-between font-mono text-[10px] tracking-widest text-neutral-500">
+							<span>PROYECTO 01 // CDMX</span>
+							<span class="text-neutral-300">USO MIXTO CORPORATIVO / RESIDENCIAL</span>
+						</div>
+
+						<h3 class="font-display text-3xl sm:text-4xl font-normal text-white">
+							Torre Kinetic Sky
+						</h3>
+
+						<p class="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed">
+							Desarrollo vertical de 42 niveles resuelto mediante un núcleo central de concreto armado postensado y un exoesqueleto perimetral de acero estructural. La configuración estructural absorbe el 100% de los momentos de volteo sísmico y suprime columnas intermedias, alcanzando un 92% de eficiencia de planta libre.
+						</p>
+					</div>
+
+					<!-- Tabla de Parámetros Cuantitativos -->
+					<div class="border-t border-white/10 pt-6">
+						<div class="grid grid-cols-2 sm:grid-cols-4 gap-6 font-mono text-xs">
+							<div>
+								<span class="text-[9px] uppercase tracking-widest text-neutral-500 block">Superficie Bruta</span>
+								<span class="text-sm text-white font-medium block mt-1">68,500 m²</span>
+								<span class="text-[9px] text-neutral-500">Área construida</span>
+							</div>
+							<div>
+								<span class="text-[9px] uppercase tracking-widest text-neutral-500 block">Altura de Corona</span>
+								<span class="text-sm text-white font-medium block mt-1">178.5 m</span>
+								<span class="text-[9px] text-neutral-500">42 niveles sobre cota</span>
+							</div>
+							<div>
+								<span class="text-[9px] uppercase tracking-widest text-neutral-500 block">Ratio de Claros</span>
+								<span class="text-sm text-white font-medium block mt-1">16.2 m</span>
+								<span class="text-[9px] text-neutral-500">Sin apoyos intermedios</span>
+							</div>
+							<div>
+								<span class="text-[9px] uppercase tracking-widest text-neutral-500 block">Eficiencia de Planta</span>
+								<span class="text-sm text-white font-medium block mt-1">92.4%</span>
+								<span class="text-[9px] text-neutral-500">Ratio útil NLA / GFA</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="flex items-center justify-between pt-4 border-t border-white/5 font-mono text-[10px] text-neutral-500">
+						<span>SISTEMA RESISTENTE: NÚCLEO DÚCTIL + DIAGRID</span>
+						<span class="text-neutral-300">ESTATUS: EN EDIFICACIÓN (NIVEL 28)</span>
+					</div>
+				</div>
+
+				<!-- Columna 2: Diagrama Isométrico Esquemático Vectorial (5 Cols) -->
+				<div class="lg:col-span-5 bg-neutral-950 p-8 sm:p-12 flex flex-col justify-between relative">
+					<div class="font-mono text-[10px] tracking-widest text-neutral-500 flex justify-between">
+						<span>SECCIÓN AXONOMÉTRICA</span>
+						<span>ESC 1:500</span>
+					</div>
+
+					<div class="py-8 flex items-center justify-center">
+						<svg class="w-48 h-72 text-neutral-500" viewBox="0 0 120 180" fill="none" stroke="currentColor" stroke-width="1">
+							<!-- Envolvente exterior -->
+							<polygon points="60,10 110,35 110,145 60,170 10,145 10,35" stroke-dasharray="1 3" stroke="rgba(255,255,255,0.2)" />
+							<!-- Núcleo rígido postensado -->
+							<polygon points="60,25 85,38 85,150 60,162 35,150 35,38" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" />
+							<!-- Diagrid perimetral -->
+							<line x1="10" y1="35" x2="60" y2="70" stroke="rgba(255,255,255,0.3)" />
+							<line x1="110" y1="35" x2="60" y2="70" stroke="rgba(255,255,255,0.3)" />
+							<line x1="10" y1="90" x2="60" y2="125" stroke="rgba(255,255,255,0.3)" />
+							<line x1="110" y1="90" x2="60" y2="125" stroke="rgba(255,255,255,0.3)" />
+							<line x1="10" y1="145" x2="60" y2="170" stroke="rgba(255,255,255,0.5)" />
+							<line x1="110" y1="145" x2="60" y2="170" stroke="rgba(255,255,255,0.5)" />
+							<!-- Niveles de entrepiso -->
+							<line x1="35" y1="65" x2="85" y2="65" stroke="rgba(255,255,255,0.2)" />
+							<line x1="35" y1="95" x2="85" y2="95" stroke="rgba(255,255,255,0.2)" />
+							<line x1="35" y1="125" x2="85" y2="125" stroke="rgba(255,255,255,0.2)" />
+							<!-- Eje baricéntrico -->
+							<line x1="60" y1="5" x2="60" y2="175" stroke-dasharray="3 3" stroke="rgba(255,255,255,0.6)" />
+						</svg>
+					</div>
+
+					<div class="font-mono text-[9px] text-neutral-500 tracking-wider text-right uppercase">
+						CÁLCULO DE DERIVA LATERAL: &gamma; &lt; 0.008 h
+					</div>
+				</div>
+
+			</div>
+
+			<!-- PROYECTOS 02 Y 03 (Composición Asimétrica en Dúo) -->
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+				
+				<!-- Proyecto 02: Residencia Cantilever Zero -->
+				<article class="border border-white/10 bg-[#111111] p-8 sm:p-10 flex flex-col justify-between space-y-8">
+					<div class="space-y-4">
+						<div class="flex items-center justify-between font-mono text-[10px] tracking-widest text-neutral-500">
+							<span>01.2 // RESIDENCIA PRIVADA</span>
+							<span>VALLE DE BRAVO</span>
+						</div>
+
+						<h3 class="font-display text-2xl font-normal text-white">
+							Residencia Cantilever Zero
+						</h3>
+
+						<p class="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed">
+							Estructura habitacional en voladizo continuo de 18.0 metros sobre pendiente rocosa de 42°. Anclaje de cimentación con 16 micropilotes de fricción perforados en estrato basáltico y losa aligerada postensada con tendones de tiro invertido.
+						</p>
+					</div>
+
+					<!-- Datos Específicos -->
+					<div class="border-t border-white/10 pt-6 space-y-3 font-mono text-xs">
+						<div class="flex justify-between py-1 border-b border-white/5">
+							<span class="text-neutral-500">Área de Desplante</span>
+							<span class="text-white">1,250 m²</span>
+						</div>
+						<div class="flex justify-between py-1 border-b border-white/5">
+							<span class="text-neutral-500">Longitud de Voladizo Libre</span>
+							<span class="text-white">18.0 m sin apoyo inferior</span>
+						</div>
+						<div class="flex justify-between py-1 border-b border-white/5">
+							<span class="text-neutral-500">Masa Térmica Pasiva</span>
+							<span class="text-white">Muros ciclópeos 45 cm</span>
+						</div>
+						<div class="flex justify-between py-1">
+							<span class="text-neutral-500">Dictamen Estructural</span>
+							<span class="text-neutral-300">Certificación DRO / Corresponsable</span>
+						</div>
+					</div>
+				</article>
+
+				<!-- Proyecto 03: Pabellón Bioclimático Helix -->
+				<article class="border border-white/10 bg-[#111111] p-8 sm:p-10 flex flex-col justify-between space-y-8">
+					<div class="space-y-4">
+						<div class="flex items-center justify-between font-mono text-[10px] tracking-widest text-neutral-500">
+							<span>01.3 // EQUIPAMIENTO CULTURAL</span>
+							<span>MONTERREY</span>
+						</div>
+
+						<h3 class="font-display text-2xl font-normal text-white">
+							Pabellón Bioclimático Helix
+						</h3>
+
+						<p class="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed">
+							Edificio cultural dotado de una doble fachada ventilada autoportante con lamas cerámicas de geometría reglada. La cámara de aire de 90 cm induce convección forzada por gradiente de presión térmica, mitigando 12°C de carga solar directa sobre el muro interior.
+						</p>
+					</div>
+
+					<!-- Datos Específicos -->
+					<div class="border-t border-white/10 pt-6 space-y-3 font-mono text-xs">
+						<div class="flex justify-between py-1 border-b border-white/5">
+							<span class="text-neutral-500">Superficie Total</span>
+							<span class="text-white">14,800 m²</span>
+						</div>
+						<div class="flex justify-between py-1 border-b border-white/5">
+							<span class="text-neutral-500">Envolvente Ventilada</span>
+							<span class="text-white">3,200 m² piel cerámica</span>
+						</div>
+						<div class="flex justify-between py-1 border-b border-white/5">
+							<span class="text-neutral-500">Reducción de Carga HVAC</span>
+							<span class="text-white">-52% Potencia térmica requerida</span>
+						</div>
+						<div class="flex justify-between py-1">
+							<span class="text-neutral-500">Modelado Solar</span>
+							<span class="text-neutral-300">Radiance / EnergyPlus CFD</span>
+						</div>
+					</div>
+				</article>
+
+			</div>
+
+		</div>
+
+		<!-- CÉDULA TÉCNICA DE MÉTRICAS GLOBALES DE LA FIRMA -->
+		<div class="border-t border-white/10 pt-10">
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-white/10">
+				
+				<div class="space-y-1.5 pt-6 md:pt-0">
+					<div class="font-mono text-3xl sm:text-4xl text-white font-medium">
+						184,200 <span class="text-xs text-neutral-500 font-normal">m²</span>
+					</div>
+					<div class="font-mono text-[10px] uppercase tracking-widest text-neutral-400">
+						Superficie Estructural Calculada
+					</div>
+					<p class="text-[11px] text-neutral-500 font-light leading-relaxed">
+						Volumen total de proyectos ejecutados bajo normativas sísmicas NTC-RCDF y ASCE 7-22.
+					</p>
+				</div>
+
+				<div class="space-y-1.5 pt-6 md:pt-0 md:pl-8">
+					<div class="font-mono text-3xl sm:text-4xl text-white font-medium">
+						32 <span class="text-xs text-neutral-500 font-normal">Dictámenes</span>
+					</div>
+					<div class="font-mono text-[10px] uppercase tracking-widest text-neutral-400">
+						Reconocimientos Técnicos & Bienales
+					</div>
+					<p class="text-[11px] text-neutral-500 font-light leading-relaxed">
+						Distinciones nacionales e internacionales en eficiencia estructural, edificación vertical y sustentabilidad.
+					</p>
+				</div>
+
+				<div class="space-y-1.5 pt-6 md:pt-0 md:pl-8">
+					<div class="font-mono text-3xl sm:text-4xl text-white font-medium">
+						LOD 400 <span class="text-xs text-neutral-500 font-normal">BIM</span>
+					</div>
+					<div class="font-mono text-[10px] uppercase tracking-widest text-neutral-400">
+						Resolución de Detalle Constructivo
+					</div>
+					<p class="text-[11px] text-neutral-500 font-light leading-relaxed">
+						Entrega con despiece de habilitado de acero, ductería y gemelos digitales con tolerancia &plusmn;2 mm.
+					</p>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+</section>

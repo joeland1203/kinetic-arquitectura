@@ -1,0 +1,237 @@
+---
+// src/components/IngenieriaSection.astro
+---
+
+<section id="ingenieria" class="relative w-full bg-[#080808] text-neutral-100 py-24 md:py-32 px-6 md:px-12 border-t border-white/10">
+	<!-- Retícula sobria de ingeniería -->
+	<div class="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#ffffff04_1px,transparent_1px),linear-gradient(to_bottom,#ffffff04_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+
+	<div class="max-w-7xl mx-auto relative z-10 space-y-16 md:space-y-24">
+		
+		<!-- Encabezado de Sección -->
+		<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 border-b border-white/10 pb-10">
+			<div class="space-y-3 max-w-2xl">
+				<div class="font-mono text-[10px] tracking-[0.3em] text-neutral-400 uppercase">
+					02 / RIGOR TÉCNICO & INGENIERÍA ESTRUCTURAL
+				</div>
+				<h2 class="font-display text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-white leading-[1.05]">
+					MÉTODO ANALÍTICO &<br />
+					<span class="text-neutral-500">DISIPACIÓN DINÁMICA</span>
+				</h2>
+				<p class="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed max-w-xl pt-1">
+					La resolución estructural determina la envolvente, nunca a la inversa. Modelamos respuestas no lineales para garantizar desplazamientos laterales controlados, integridad de losas postensadas y amortiguamiento telúrico en zonas de alta sismicidad.
+				</p>
+			</div>
+
+			<!-- Metadatos de Códigos de Diseño -->
+			<div class="flex flex-col font-mono text-[11px] text-neutral-500 space-y-1 border-l border-white/10 pl-6 lg:pl-8">
+				<span class="text-neutral-300 tracking-wider">CÓDIGOS DE CÁLCULO APLICADOS</span>
+				<span>ACI 318-19 • AISC 360-16 • ASCE 7-22</span>
+				<span>NTC-CDMX 2023 (CRITERIO SÍSMICO Q = 4)</span>
+			</div>
+		</div>
+
+		<!-- Layout Asimétrico: Manifiesto Analítico + Cédula de Especificaciones Técnicas -->
+		<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+			
+			<!-- Columna Izquierda: Manifiesto Analítico y Registro FEA (5 Cols) -->
+			<div class="lg:col-span-5 space-y-8">
+				
+				<!-- Manifiesto Técnico -->
+				<div class="border border-white/10 bg-[#111111] p-8 space-y-6">
+					<div class="font-mono text-[10px] tracking-widest text-neutral-500 uppercase border-b border-white/10 pb-3 flex justify-between">
+						<span>CRITERIO DE DISEÑO</span>
+						<span>REF. DOC-ING-2026</span>
+					</div>
+
+					<blockquote class="font-display text-xl sm:text-2xl text-white font-normal leading-snug">
+						"La audacia volumétrica solo es legítima cuando cada vector de carga cuenta con una trayectoria de descenso demostrada y verificable."
+					</blockquote>
+
+					<div class="space-y-4 text-xs text-neutral-400 font-light leading-relaxed pt-2">
+						<div class="border-t border-white/5 pt-3">
+							<span class="font-mono text-[10px] text-neutral-300 uppercase tracking-wider block mb-1">
+								Concreto Postensado no Adherido
+							</span>
+							<p>
+								Uso de tendones de torón de 7 alambres grado 270 (ASTM A416) con pretensado controlado para anular deflexiones a largo plazo en losas de claros mayores a 16 metros.
+							</p>
+						</div>
+
+						<div class="border-t border-white/5 pt-3">
+							<span class="font-mono text-[10px] text-neutral-300 uppercase tracking-wider block mb-1">
+								Amortiguamiento de Masa Sintonizada (TMD)
+							</span>
+							<p>
+								Instalación de péndulos invertidos de masa viscosa en coronas de rascacielos para reducir aceleraciones horizontales causadas por ráfagas de viento y movimientos telúricos de baja frecuencia.
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Registro Numérico de Simulación por Elementos Finitos (FEA) -->
+				<div class="border border-white/10 bg-neutral-950 p-6 font-mono text-xs space-y-4">
+					<div class="flex justify-between items-center text-[10px] text-neutral-500 border-b border-white/10 pb-2">
+						<span>REGISTRO ESPECTRAL // ANÁLISIS MODAL</span>
+						<span class="text-neutral-300">ESTADO LÍMITE DE SERVICIO</span>
+					</div>
+
+					<div class="space-y-2.5 text-[11px]">
+						<div class="flex justify-between">
+							<span class="text-neutral-500">Esfuerzo de Fluencia Acero (Fy)</span>
+							<span class="text-white">420 MPa (Grado 60)</span>
+						</div>
+						<div class="flex justify-between">
+							<span class="text-neutral-500">Resistencia Concreto Núcleo (f'c)</span>
+							<span class="text-white">55 MPa (Autocompactante)</span>
+						</div>
+						<div class="flex justify-between">
+							<span class="text-neutral-500">Deriva de Entrepiso Máxima</span>
+							<span class="text-white">0.0058 rad (&lt; 0.012 norma)</span>
+						</div>
+						<div class="flex justify-between">
+							<span class="text-neutral-500">Frecuencia Propia Modo 1</span>
+							<span class="text-white">0.34 Hz</span>
+						</div>
+						<div class="flex justify-between">
+							<span class="text-neutral-500">Factor de Reducción Sísmica</span>
+							<span class="text-white">Q = 4.0 / Q' = 3.2</span>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<!-- Columna Derecha: Pliego de Especificaciones Técnicas (7 Cols) -->
+			<div class="lg:col-span-7 space-y-6">
+				
+				<!-- Especificación 02.1: BIM Management (LOD 400) -->
+				<div class="border border-white/10 bg-[#111111] p-8 space-y-4">
+					<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/10 pb-3 font-mono text-xs">
+						<span class="text-white font-medium">02.1 / GESTIÓN BIM & GEMELO DIGITAL</span>
+						<span class="text-[10px] text-neutral-500">NORMATIVA ISO 19650-1/2</span>
+					</div>
+
+					<h3 class="font-display text-xl font-normal text-white">
+						BIM Management (LOD 400)
+					</h3>
+
+					<p class="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed">
+						Modelado paramétrico coordinado para fabricación y montaje. Levantamiento de interferencias espaciales (Clash Detection) previo a habilitado, despiece automatizado de acero de refuerzo e integración de especificaciones IFC en entorno común de datos (CDE).
+					</p>
+
+					<div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-3 border-t border-white/5 font-mono text-[10px]">
+						<div>
+							<span class="text-neutral-500 block">TOLERANCIA DE OBRA</span>
+							<span class="text-neutral-300 font-medium">&plusmn;2 mm en anclajes</span>
+						</div>
+						<div>
+							<span class="text-neutral-500 block">COLISIONES DETECTADAS</span>
+							<span class="text-neutral-300 font-medium">0 en fase de colado</span>
+						</div>
+						<div>
+							<span class="text-neutral-500 block">CONTROL PRESUPUESTAL</span>
+							<span class="text-neutral-300 font-medium">Desviación &lt; 1.2%</span>
+						</div>
+					</div>
+				</div>
+
+				<!-- Especificación 02.2: Geometría Paramétrica & CFD -->
+				<div class="border border-white/10 bg-[#111111] p-8 space-y-4">
+					<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/10 pb-3 font-mono text-xs">
+						<span class="text-white font-medium">02.2 / CÁLCULO GENERATIVO & TÚNEL DE VIENTO</span>
+						<span class="text-[10px] text-neutral-500">MALLADO CFD NAVIER-STOKES</span>
+					</div>
+
+					<h3 class="font-display text-xl font-normal text-white">
+						Geometría Paramétrica & Dinámica de Fluidos
+					</h3>
+
+					<p class="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed">
+						Simulación computacional de presiones aerodinámicas sobre geometrías complejas. Modelamos el comportamiento de vórtices y desprendimiento periódico (Von Kármán) para mitigar resonancias inducidas por viento sin sobredimensionar la estructura primaria.
+					</p>
+
+					<div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-3 border-t border-white/5 font-mono text-[10px]">
+						<div>
+							<span class="text-neutral-500 block">VELOCIDAD BÁSICA</span>
+							<span class="text-neutral-300 font-medium">160 km/h (R = 50 años)</span>
+						</div>
+						<div>
+							<span class="text-neutral-500 block">PRESIÓN DINÁMICA</span>
+							<span class="text-neutral-300 font-medium">qz = 1.45 kN/m²</span>
+						</div>
+						<div>
+							<span class="text-neutral-500 block">OPTIMIZACIÓN TOPOLÓGICA</span>
+							<span class="text-neutral-300 font-medium">-18% Masa de acero</span>
+						</div>
+					</div>
+				</div>
+
+				<!-- Especificación 02.3: Ingeniería de Fachadas & Confort Acústico -->
+				<div class="border border-white/10 bg-[#111111] p-8 space-y-4">
+					<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/10 pb-3 font-mono text-xs">
+						<span class="text-white font-medium">02.3 / ENVOLVENTES PRESURIZADAS</span>
+						<span class="text-[10px] text-neutral-500">NORMA ASTM E283 / E330 / E331</span>
+					</div>
+
+					<h3 class="font-display text-xl font-normal text-white">
+						Ingeniería de Fachadas & Muros Cortina
+					</h3>
+
+					<p class="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed">
+						Sistemas modulares unitizados con rotura de puente térmico en poliamida estructural. Vidrios insulados triples con cámara de gas argón al 90%, sellado con juntas EPDM vulcanizadas y fijaciones de dilatación diferencial que absorben deflexiones de entrepiso.
+					</p>
+
+					<div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-3 border-t border-white/5 font-mono text-[10px]">
+						<div>
+							<span class="text-neutral-500 block">TRANSMITANCIA TÉRMICA</span>
+							<span class="text-neutral-300 font-medium">U = 0.65 W/m²K</span>
+						</div>
+						<div>
+							<span class="text-neutral-500 block">AISLAMIENTO ACÚSTICO</span>
+							<span class="text-neutral-300 font-medium">Rw = 46 dB</span>
+						</div>
+						<div>
+							<span class="text-neutral-500 block">ESTANQUEIDAD AL AGUA</span>
+							<span class="text-neutral-300 font-medium">1,200 Pa sin filtración</span>
+						</div>
+					</div>
+				</div>
+
+				<!-- Especificación 02.4: Estructuras Híbridas Acero-Concreto -->
+				<div class="border border-white/10 bg-[#111111] p-8 space-y-4">
+					<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/10 pb-3 font-mono text-xs">
+						<span class="text-white font-medium">02.4 / SECCIONES COMPUESTAS</span>
+						<span class="text-[10px] text-neutral-500">AISC 360 CAPÍTULO I</span>
+					</div>
+
+					<h3 class="font-display text-xl font-normal text-white">
+						Estructuras Híbridas Acero-Concreto
+					</h3>
+
+					<p class="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed">
+						Columnas tubulares de acero rellenas de concreto de alta resistencia (CFT) combinadas con trabes postensadas. La acción compuesta incrementa la rigidez a flexión en un 40% respecto a secciones puras de acero y reduce las secciones transversales de desplante.
+					</p>
+
+					<div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-3 border-t border-white/5 font-mono text-[10px]">
+						<div>
+							<span class="text-neutral-500 block">CLAROS MÁXIMOS</span>
+							<span class="text-neutral-300 font-medium">22.0 m libres</span>
+						</div>
+						<div>
+							<span class="text-neutral-500 block">ESBELTEZ DE COLUMNAS</span>
+							<span class="text-neutral-300 font-medium">b/t &lt; 28 (Compacta)</span>
+						</div>
+						<div>
+							<span class="text-neutral-500 block">RESISTENCIA AL FUEGO</span>
+							<span class="text-neutral-300 font-medium">R180 sin pintura intum.</span>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+</section>

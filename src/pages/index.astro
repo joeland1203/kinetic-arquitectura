@@ -1,0 +1,661 @@
+---
+import '../styles/global.css';
+import ModelViewer3D from '../components/ModelViewer3D.astro';
+import DesarrolloSection from '../components/DesarrolloSection.astro';
+import IngenieriaSection from '../components/IngenieriaSection.astro';
+import SustentabilidadSection from '../components/SustentabilidadSection.astro';
+import ContactoSection from '../components/ContactoSection.astro';
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth bg-[#080808] text-neutral-100 selection:bg-neutral-200 selection:text-neutral-900">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="generator" content={Astro.generator} />
+		<title>KINETIC ARQUITECTURA | Ingeniería & Desarrollos Verticales</title>
+		<meta name="description" content="Firma de ingeniería y desarrollos arquitectónicos vanguardistas. Transformando el horizonte urbano con precisión e innovación." />
+		
+		<!-- Google Fonts para estética editorial de lujo -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600&family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet" />
+		
+		<style>
+			html {
+				scroll-behavior: smooth;
+			}
+			:root {
+				font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+			}
+			.font-display {
+				font-family: 'Syne', sans-serif;
+			}
+			/* Ocultar barra de scroll para una experiencia de galería limpia */
+			::-webkit-scrollbar {
+				width: 4px;
+			}
+			::-webkit-scrollbar-track {
+				background: #080808;
+			}
+			::-webkit-scrollbar-thumb {
+				background: #27272a;
+				border-radius: 2px;
+			}
+			::-webkit-scrollbar-thumb:hover {
+				background: #52525b;
+			}
+		</style>
+	</head>
+
+	<body class="bg-[#080808] text-neutral-200 overflow-x-hidden antialiased">
+		<!-- Header de Navegación Editorial Minimalista con Glassmorphism Fijo -->
+		<header class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 py-5 md:py-6 backdrop-blur-md bg-[#080808]/70 border-b border-white/[0.08] transition-all duration-300">
+			<a href="#scrollyContainer" class="flex items-center space-x-3 group cursor-pointer">
+				<div class="w-2.5 h-2.5 bg-[#d4af37] rounded-full animate-pulse"></div>
+				<span class="font-display font-bold tracking-[0.25em] text-xs md:text-sm text-white uppercase group-hover:text-[#d4af37] transition-colors">
+					Kinetic <span class="text-neutral-500 font-light">Arquitectura</span>
+				</span>
+			</a>
+			
+			<!-- Navegación Desktop -->
+			<nav class="hidden md:flex items-center space-x-8 lg:space-x-10 text-[11px] font-medium tracking-[0.2em] text-neutral-400 uppercase">
+				<a href="#desarrollo" class="hover:text-white transition-colors duration-200">Desarrollo</a>
+				<a href="#ingenieria" class="hover:text-white transition-colors duration-200">Ingeniería</a>
+				<a href="#sustentabilidad" class="hover:text-white transition-colors duration-200">Sustentabilidad</a>
+				<a href="#contacto" class="hover:text-white transition-colors duration-200">Contacto</a>
+			</nav>
+
+			<div class="flex items-center space-x-4">
+				<div class="text-[11px] font-mono tracking-widest text-neutral-400 border border-neutral-800/80 px-3 py-1 rounded-full backdrop-blur-sm hidden sm:block">
+					FRAME <span id="frameCounter" class="text-white font-medium">001</span>/175
+				</div>
+
+				<!-- Botón Menú Móvil -->
+				<button id="mobileMenuBtn" type="button" class="md:hidden p-2 text-neutral-400 hover:text-white focus:outline-none cursor-pointer" aria-label="Abrir Menú de Navegación">
+					<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
+					</svg>
+				</button>
+			</div>
+		</header>
+
+		<!-- Menú Móvil Desplegable con Glassmorphism -->
+		<div id="mobileMenu" class="fixed inset-x-0 top-[65px] z-40 md:hidden bg-[#080808]/95 backdrop-blur-xl border-b border-white/10 px-6 py-6 space-y-4 hidden opacity-0 transition-all duration-300">
+			<nav class="flex flex-col space-y-4 text-xs font-mono tracking-[0.2em] text-neutral-300 uppercase">
+				<a href="#desarrollo" class="mobileNavLink hover:text-[#d4af37] transition-colors py-1 border-b border-white/5">01 / Desarrollo</a>
+				<a href="#ingenieria" class="mobileNavLink hover:text-[#d4af37] transition-colors py-1 border-b border-white/5">02 / Ingeniería</a>
+				<a href="#sustentabilidad" class="mobileNavLink hover:text-[#d4af37] transition-colors py-1 border-b border-white/5">03 / Sustentabilidad</a>
+				<a href="#contacto" class="mobileNavLink hover:text-[#d4af37] transition-colors py-1">04 / Contacto</a>
+			</nav>
+		</div>
+
+		<!-- Indicador de Progreso de Scroll Lateral -->
+		<aside id="scrollIndicator" class="fixed right-6 md:right-10 top-1/2 -translate-y-1/2 z-40 hidden sm:flex flex-col items-center space-y-4 pointer-events-none transition-opacity duration-300">
+			<span id="scrollPercent" class="font-mono text-[10px] tracking-widest text-neutral-500">00%</span>
+			<div class="w-[1px] h-32 bg-neutral-800 relative overflow-hidden">
+				<div id="scrollProgressBar" class="absolute top-0 left-0 w-full bg-white h-0 transition-[height] duration-75"></div>
+			</div>
+			<span class="font-mono text-[9px] tracking-widest text-neutral-600 uppercase [writing-mode:vertical-lr]">Scroll</span>
+		</aside>
+
+		<!-- Contenedor Principal con Scroll Virtual -->
+		<main id="scrollyContainer" class="min-h-[450vh] relative bg-[#080808]">
+			
+			<!-- Canvas Fijado en Pantalla Completa y Capas de Contenido Integradas -->
+			<div class="sticky top-0 w-full h-screen z-0 overflow-hidden bg-[#080808]">
+				<canvas id="kineticCanvas" class="w-full h-full block touch-none"></canvas>
+				
+				<!-- Capa atmosférica sutil de viñeta para contraste cinematográfico -->
+				<div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-[#080808]/70 opacity-80"></div>
+				<div class="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#080808]/90 via-[#080808]/40 to-transparent"></div>
+
+				<!-- Capas de Texto Flotante (Scrollytelling) solidarias con el sticky -->
+				<div id="heroTextContainer" class="absolute inset-0 pointer-events-none z-20 flex items-center px-6 md:px-20 lg:px-28 transition-opacity duration-200">
+					
+					<!-- Bloque 1: 0% - 18% (Exterior) -->
+					<section id="block1" class="max-w-2xl transition-all duration-300 transform opacity-100 translate-y-0 absolute">
+						<div class="inline-flex items-center space-x-2.5 px-3.5 py-1 mb-5 rounded-full border border-white/10 bg-black/40 backdrop-blur-md">
+							<span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+							<span class="font-mono text-[10px] md:text-xs tracking-[0.25em] text-neutral-300 uppercase">
+								01 / DESARROLLO VERTICAL
+							</span>
+						</div>
+						<h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.05] mb-6">
+							KINETIC<br />
+							<span class="font-light tracking-wide text-neutral-400">ARQUITECTURA</span>
+						</h1>
+						<p class="text-base sm:text-lg lg:text-xl text-neutral-300 font-light leading-relaxed max-w-lg">
+							Ingeniería estructural y diseño vanguardista que transforma el skyline metropolitano.
+						</p>
+						<div class="mt-8 flex items-center space-x-4 text-xs font-mono tracking-widest text-neutral-400">
+							<span class="animate-bounce">↓</span>
+							<span>DESLIZA PARA EXPLORAR</span>
+						</div>
+					</section>
+
+					<!-- Bloque 2: 26% - 70% (Lobby & Luz Natural) -->
+					<section id="block2" class="max-w-2xl transition-all duration-300 transform opacity-0 translate-y-6 absolute">
+						<div class="inline-flex items-center space-x-2.5 px-3.5 py-1 mb-5 border border-white/10 bg-black/50">
+							<span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+							<span class="font-mono text-[10px] md:text-xs tracking-[0.25em] text-neutral-300 uppercase">
+								02 / ENVOLVENTES BIOCLIMÁTICAS
+							</span>
+						</div>
+						<h2 class="font-display text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-white leading-[1.08] mb-6">
+							AMPLITUD &<br />
+							<span class="text-neutral-400">PRECISIÓN DE CLAROS</span>
+						</h2>
+						<p class="text-xs sm:text-base text-neutral-300 font-light leading-relaxed max-w-lg">
+							Estructuras de doble altura con iluminación cenital calibrada, inercia térmica pasiva y certificación de habitabilidad sustentable.
+						</p>
+						<div class="mt-8 grid grid-cols-2 gap-6 max-w-md pt-6 border-t border-white/10 font-mono text-xs">
+							<div>
+								<div class="text-neutral-500 text-[10px] uppercase tracking-wider">Eficiencia Térmica</div>
+								<div class="text-white text-sm font-medium tracking-wider mt-1">+42% Pasiva</div>
+							</div>
+							<div>
+								<div class="text-neutral-500 text-[10px] uppercase tracking-wider">Protocolo Ambiental</div>
+								<div class="text-white text-sm font-medium tracking-wider mt-1">LEED Platinum BD+C</div>
+							</div>
+						</div>
+					</section>
+
+					<!-- Bloque 3: 81% - 96% (Recepción & Acabados) -->
+					<section id="block3" class="max-w-2xl transition-all duration-300 transform opacity-0 translate-y-6 absolute">
+						<div class="inline-flex items-center space-x-2.5 px-3.5 py-1 mb-5 border border-white/10 bg-black/50">
+							<span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+							<span class="font-mono text-[10px] md:text-xs tracking-[0.25em] text-neutral-300 uppercase">
+								03 / RIGOR TECTÓNICO
+							</span>
+						</div>
+						<h2 class="font-display text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-white leading-[1.08] mb-6">
+							MATERIALIDAD &<br />
+							<span class="text-neutral-400">PERMANENCIA</span>
+						</h2>
+						<p class="text-xs sm:text-base text-neutral-300 font-light leading-relaxed max-w-lg">
+							Especificación de materiales de baja transmitancia, modulaciones milimétricas de cantera natural y ensambles estructurales de alta durabilidad patrimonial.
+						</p>
+						<div class="mt-8 flex flex-wrap gap-4 pt-2">
+							<a href="#desarrollo" class="pointer-events-auto inline-flex items-center justify-center px-6 py-3 text-xs font-mono tracking-[0.2em] uppercase text-black bg-white hover:bg-neutral-200 transition-colors border border-white">
+								Explorar Desarrollos
+							</a>
+							<a href="#modelo-3d" class="pointer-events-auto inline-flex items-center justify-center px-6 py-3 text-xs font-mono tracking-[0.2em] uppercase text-white bg-white/5 border border-white/15 hover:bg-white/10 transition-colors">
+								Kinetic Lab 3D
+							</a>
+						</div>
+					</section>
+				</div>
+
+				<!-- Capa de Paneles Editoriales de Transición (Centrado Absoluto en Pantalla Completa) -->
+				<div id="heroTransitionContainer" class="pointer-events-none absolute inset-0 z-25 flex items-center justify-center px-4 sm:px-8 transition-opacity duration-200">
+					<!-- Panel de Transición Editorial 1: Umbral y Transición Térmica (Frames 35-39 / ~18% - 25%) -->
+					<aside id="transPanel1" class="w-full max-w-3xl lg:max-w-4xl text-center pointer-events-none bg-[#080808]/30 backdrop-blur-md border-y border-white/15 p-8 sm:p-12 md:p-16 shadow-[0_8px_40px_rgba(0,0,0,0.4)] transition-all duration-300 opacity-0 translate-y-6 absolute">
+						<div class="flex items-center justify-center space-x-3 pb-4 mb-6 border-b border-white/10 max-w-md mx-auto">
+							<span class="w-2 h-2 rounded-full bg-[#d4af37] animate-pulse"></span>
+							<span class="font-mono text-xs sm:text-sm tracking-[0.3em] text-[#d4af37] uppercase font-medium">
+								01.5 / SECUENCIA DE ACCESO
+							</span>
+							<span class="font-mono text-[10px] sm:text-xs text-neutral-400 uppercase tracking-widest pl-2 border-l border-white/10">
+								UMBRAL 01
+							</span>
+						</div>
+						<h3 class="font-display text-3xl sm:text-5xl md:text-6xl font-normal tracking-tight text-white mb-6 leading-[1.08]">
+							UMBRAL Y TRANSICIÓN TÉRMICA
+						</h3>
+						<p class="text-sm sm:text-base md:text-xl text-neutral-200 font-light leading-relaxed max-w-2xl mx-auto">
+							De la volumetría exterior al microclima interior del atrio. Disipación de radiación solar y transición lumínica calibrada.
+						</p>
+					</aside>
+
+					<!-- Panel de Transición Editorial 2: Materialidad & Inmersión Monolítica (Frames 131-137 / ~70% - 80%) -->
+					<aside id="transPanel2" class="w-full max-w-3xl lg:max-w-4xl text-center pointer-events-none bg-[#080808]/30 backdrop-blur-md border-y border-white/15 p-8 sm:p-12 md:p-16 shadow-[0_8px_40px_rgba(0,0,0,0.4)] transition-all duration-300 opacity-0 translate-y-6 absolute">
+						<div class="flex items-center justify-center space-x-3 pb-4 mb-6 border-b border-white/10 max-w-md mx-auto">
+							<span class="w-2 h-2 rounded-full bg-[#d4af37] animate-pulse"></span>
+							<span class="font-mono text-xs sm:text-sm tracking-[0.3em] text-[#d4af37] uppercase font-medium">
+								02.5 / MATERIALIDAD
+							</span>
+							<span class="font-mono text-[10px] sm:text-xs text-neutral-400 uppercase tracking-widest pl-2 border-l border-white/10">
+								TRANSICIÓN 02
+							</span>
+						</div>
+						<h3 class="font-display text-3xl sm:text-5xl md:text-6xl font-normal tracking-tight text-white mb-6 leading-[1.08]">
+							INMERSIÓN MONOLÍTICA
+						</h3>
+						<p class="text-sm sm:text-base md:text-xl text-neutral-200 font-light leading-relaxed max-w-2xl mx-auto">
+							Encuentro de planos estructurales, piedra natural y luz cenital. Continuidad táctil y tectónica de los espacios comunes.
+						</p>
+					</aside>
+				</div>
+
+				<!-- Barra inferior con información arquitectónica de contexto -->
+				<footer id="heroFooter" class="absolute bottom-6 left-6 md:left-12 z-30 pointer-events-none flex items-center space-x-6 text-[10px] font-mono tracking-widest text-neutral-500 transition-opacity duration-300">
+					<div>LAT: 19.4326° N / LON: 99.1332° W</div>
+					<div class="hidden sm:block">KINETIC STUDIO © 2026</div>
+				</footer>
+			</div>
+		</main>
+
+		<!-- SECCIÓN 01: DESARROLLO PATRIMONIAL & VERTICAL -->
+		<DesarrolloSection />
+
+		<!-- SECCIÓN INTERACTIVA 3D: KINETIC LAB // PROYECTO ISLA FLOTANTE -->
+		<ModelViewer3D />
+
+		<!-- SECCIÓN 02: RIGOR TÉCNICO & INGENIERÍA ESTRUCTURAL -->
+		<IngenieriaSection />
+
+		<!-- SECCIÓN 03: ARQUITECTURA BIOCLIMÁTICA & IMPACTO -->
+		<SustentabilidadSection />
+
+		<!-- SECCIÓN 04: INVERSIÓN, CONTACTO PRIVADO & FOOTER DE PRESTIGIO -->
+		<ContactoSection />
+
+		<!-- Script de Scrollytelling de Alto Rendimiento -->
+		<script>
+			// Número total de fotogramas disponibles
+			const TOTAL_FRAMES = 175;
+			
+			// Generador de rutas de fotogramas con padding a 3 dígitos (frame-001.webp ... frame-175.webp)
+			const getFramePath = (index: number) => {
+				const paddedIndex = String(index).padStart(3, '0');
+				return `/frames/frame-${paddedIndex}.webp`;
+			};
+
+			const canvas = document.getElementById('kineticCanvas') as HTMLCanvasElement;
+			const scrollyContainer = document.getElementById('scrollyContainer') as HTMLElement;
+			const frameCounter = document.getElementById('frameCounter') as HTMLElement;
+			const scrollPercent = document.getElementById('scrollPercent') as HTMLElement;
+			const scrollProgressBar = document.getElementById('scrollProgressBar') as HTMLElement;
+
+			const block1 = document.getElementById('block1') as HTMLElement;
+			const transPanel1 = document.getElementById('transPanel1') as HTMLElement;
+			const block2 = document.getElementById('block2') as HTMLElement;
+			const transPanel2 = document.getElementById('transPanel2') as HTMLElement;
+			const block3 = document.getElementById('block3') as HTMLElement;
+
+			const ctx = canvas.getContext('2d', { alpha: false });
+
+			// Colección de imágenes cargadas y estado de precarga
+			const images: HTMLImageElement[] = new Array(TOTAL_FRAMES + 1);
+			const loadedStatus: boolean[] = new Array(TOTAL_FRAMES + 1).fill(false);
+			let totalLoaded = 0;
+
+			// Variables de interpolación y animación (LERP)
+			let targetScrollProgress = 0;
+			let currentInterpolatedFrame = 1;
+			let targetFrame = 1;
+			let lastRenderedIndex = -1;
+
+			// Ajuste de resolución y canvas adaptable a Retina Display sin bordes ni deformación (cover)
+			function resizeCanvas() {
+				if (!canvas || !ctx) return;
+				const dpr = window.devicePixelRatio || 1;
+				const displayWidth = window.innerWidth;
+				const displayHeight = window.innerHeight;
+
+				canvas.width = Math.round(displayWidth * dpr);
+				canvas.height = Math.round(displayHeight * dpr);
+				canvas.style.width = `${displayWidth}px`;
+				canvas.style.height = `${displayHeight}px`;
+
+				// Forzar redibujado inmediato del fotograma actual tras redimensionar
+				renderCurrentFrame(currentInterpolatedFrame, true);
+			}
+
+			// Renderizado con ajuste de tipo "cover" preservando proporción y soporte de opacidad para micro-crossfade
+			function renderCoverImage(img: HTMLImageElement, alpha = 1.0) {
+				if (!ctx || !canvas) return;
+
+				const cWidth = canvas.width;
+				const cHeight = canvas.height;
+
+				const imgWidth = img.naturalWidth || img.width;
+				const imgHeight = img.naturalHeight || img.height;
+
+				if (!imgWidth || !imgHeight) return;
+
+				const imgRatio = imgWidth / imgHeight;
+				const canvasRatio = cWidth / cHeight;
+
+				let drawWidth: number;
+				let drawHeight: number;
+				let offsetX: number;
+				let offsetY: number;
+
+				if (canvasRatio > imgRatio) {
+					drawWidth = cWidth;
+					drawHeight = cWidth / imgRatio;
+					offsetX = 0;
+					offsetY = (cHeight - drawHeight) / 2;
+				} else {
+					drawHeight = cHeight;
+					drawWidth = cHeight * imgRatio;
+					offsetX = (cWidth - drawWidth) / 2;
+					offsetY = 0;
+				}
+
+				ctx.imageSmoothingEnabled = true;
+				ctx.imageSmoothingQuality = 'medium';
+				ctx.globalAlpha = Math.max(0, Math.min(1, alpha));
+				ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+				ctx.globalAlpha = 1.0;
+			}
+
+			// Buscar el frame disponible más cercano si el objetivo aún está descargándose
+			function findClosestLoadedFrame(targetIdx: number): number {
+				if (loadedStatus[targetIdx]) return targetIdx;
+
+				let bestIdx = 1;
+				let minDiff = Infinity;
+
+				for (let i = 1; i <= TOTAL_FRAMES; i++) {
+					if (loadedStatus[i]) {
+						const diff = Math.abs(i - targetIdx);
+						if (diff < minDiff) {
+							minDiff = diff;
+							bestIdx = i;
+						}
+					}
+				}
+				return bestIdx;
+			}
+
+			function renderCurrentFrame(floatingFrame: number, force = false) {
+				// Zona de Transición 1 (Frames 35 al 39): Micro-crossfade entre exterior y lobby
+				if (floatingFrame >= 35.0 && floatingFrame <= 39.0) {
+					const t = (floatingFrame - 35.0) / (39.0 - 35.0);
+					const alpha = Math.max(0, Math.min(1, t));
+
+					const baseIdx = loadedStatus[35] ? 35 : findClosestLoadedFrame(35);
+					const overlayIdx = loadedStatus[39] ? 39 : findClosestLoadedFrame(39);
+
+					const baseImg = images[baseIdx];
+					const overlayImg = images[overlayIdx];
+
+					if (baseImg && baseImg.complete && baseImg.naturalWidth > 0) {
+						renderCoverImage(baseImg, 1.0);
+					}
+					if (overlayImg && overlayImg.complete && overlayImg.naturalWidth > 0 && alpha > 0.001) {
+						renderCoverImage(overlayImg, alpha);
+					}
+
+					lastRenderedIndex = -1; // Mantener refresco activo durante la interpolación
+					if (frameCounter) {
+						frameCounter.textContent = String(Math.round(floatingFrame)).padStart(3, '0');
+					}
+					return;
+				}
+
+				// Zona de Transición 2 (Frames 131 al 137): Micro-crossfade entre lobby y recepción
+				if (floatingFrame >= 131.0 && floatingFrame <= 137.0) {
+					const t = (floatingFrame - 131.0) / (137.0 - 131.0);
+					const alpha = Math.max(0, Math.min(1, t));
+
+					const baseIdx = loadedStatus[131] ? 131 : findClosestLoadedFrame(131);
+					const overlayIdx = loadedStatus[137] ? 137 : findClosestLoadedFrame(137);
+
+					const baseImg = images[baseIdx];
+					const overlayImg = images[overlayIdx];
+
+					if (baseImg && baseImg.complete && baseImg.naturalWidth > 0) {
+						renderCoverImage(baseImg, 1.0);
+					}
+					if (overlayImg && overlayImg.complete && overlayImg.naturalWidth > 0 && alpha > 0.001) {
+						renderCoverImage(overlayImg, alpha);
+					}
+
+					lastRenderedIndex = -1; // Mantener refresco activo durante la interpolación
+					if (frameCounter) {
+						frameCounter.textContent = String(Math.round(floatingFrame)).padStart(3, '0');
+					}
+					return;
+				}
+
+				// Fuera de zonas de corte: Renderizado directo de alta fidelidad a 60 FPS
+				let index = Math.round(floatingFrame);
+				if (!loadedStatus[index]) {
+					index = findClosestLoadedFrame(index);
+				}
+
+				if (!force && index === lastRenderedIndex) return;
+
+				const img = images[index];
+				if (img && img.complete && img.naturalWidth > 0) {
+					renderCoverImage(img, 1.0);
+					lastRenderedIndex = index;
+
+					if (frameCounter) {
+						frameCounter.textContent = String(index).padStart(3, '0');
+					}
+				}
+			}
+
+			// Función auxiliar para calcular curva de opacidad suave (trapecio con entrada y salida gradual)
+			function calculateBlockOpacity(progress: number, start: number, fadeInEnd: number, fadeOutStart: number, end: number): number {
+				if (progress < start || progress > end) return 0;
+				if (progress >= fadeInEnd && progress <= fadeOutStart) return 1;
+				if (progress < fadeInEnd) {
+					return (progress - start) / (fadeInEnd - start);
+				}
+				return 1 - (progress - fadeOutStart) / (end - fadeOutStart);
+			}
+
+			// Actualizar visibilidad y posición de los bloques editoriales y máscaras de transición según el progreso del scroll
+			function updateTextBlocks(progress: number) {
+				// Bloque 1: 0% a 18% (Exterior)
+				const op1 = calculateBlockOpacity(progress, 0.0, 0.04, 0.14, 0.18);
+				const ty1 = (1 - op1) * -16;
+				if (block1) {
+					block1.style.opacity = op1.toFixed(3);
+					block1.style.transform = `translateY(${ty1.toFixed(2)}px)`;
+					block1.style.pointerEvents = op1 > 0.4 ? 'auto' : 'none';
+				}
+
+				// Máscara Transición 1: 17% a 26% (Umbral de Acceso - cubre frames 35 a 39)
+				const opT1 = calculateBlockOpacity(progress, 0.17, 0.195, 0.225, 0.26);
+				const tyT1 = (1 - opT1) * 20;
+				if (transPanel1) {
+					transPanel1.style.opacity = opT1.toFixed(3);
+					transPanel1.style.transform = `translateY(${tyT1.toFixed(2)}px)`;
+				}
+
+				// Bloque 2: 26% a 70% (Lobby & Luz Natural)
+				const op2 = calculateBlockOpacity(progress, 0.26, 0.32, 0.65, 0.70);
+				const ty2 = (1 - op2) * 20;
+				if (block2) {
+					block2.style.opacity = op2.toFixed(3);
+					block2.style.transform = `translateY(${ty2.toFixed(2)}px)`;
+					block2.style.pointerEvents = op2 > 0.4 ? 'auto' : 'none';
+				}
+
+				// Máscara Transición 2: 70% a 81% (Materialidad & Inmersión - cubre frames 131 a 137)
+				const opT2 = calculateBlockOpacity(progress, 0.70, 0.735, 0.785, 0.81);
+				const tyT2 = (1 - opT2) * 20;
+				if (transPanel2) {
+					transPanel2.style.opacity = opT2.toFixed(3);
+					transPanel2.style.transform = `translateY(${tyT2.toFixed(2)}px)`;
+				}
+
+				// Bloque 3: 81% a 96% (Recepción & Acabados)
+				// Concluye antes del final del hero para asegurar una transición limpia hacia el desarrollo
+				const op3 = calculateBlockOpacity(progress, 0.81, 0.84, 0.93, 0.97);
+				const ty3 = (1 - op3) * 20;
+				if (block3) {
+					block3.style.opacity = op3.toFixed(3);
+					block3.style.transform = `translateY(${ty3.toFixed(2)}px)`;
+					block3.style.pointerEvents = op3 > 0.4 ? 'auto' : 'none';
+				}
+			}
+
+			// Actualización del cálculo del scroll del usuario
+			function onScroll() {
+				if (!scrollyContainer) return;
+				const rect = scrollyContainer.getBoundingClientRect();
+				const scrollHeight = scrollyContainer.scrollHeight - window.innerHeight;
+				
+				if (scrollHeight <= 0) return;
+
+				// Posición relativa al contenedor
+				const scrollY = -rect.top;
+				const rawProgress = scrollY / scrollHeight;
+				targetScrollProgress = Math.max(0, Math.min(1, rawProgress));
+
+				// Calcular fotograma objetivo (1 a 175)
+				targetFrame = 1 + targetScrollProgress * (TOTAL_FRAMES - 1);
+
+				// Actualizar indicadores UI
+				const pct = Math.round(targetScrollProgress * 100);
+				if (scrollPercent) {
+					scrollPercent.textContent = `${String(pct).padStart(2, '0')}%`;
+				}
+				if (scrollProgressBar) {
+					scrollProgressBar.style.height = `${pct}%`;
+				}
+
+				// Corte de seguridad y atenuación al concluir el recorrido del Hero
+				const isPastHero = rawProgress >= 0.98;
+				const heroTextContainer = document.getElementById('heroTextContainer');
+				const heroTransitionContainer = document.getElementById('heroTransitionContainer');
+				const heroFooter = document.getElementById('heroFooter');
+				const scrollIndicator = document.getElementById('scrollIndicator');
+
+				if (heroTextContainer) {
+					heroTextContainer.style.opacity = isPastHero ? '0' : '1';
+					heroTextContainer.style.pointerEvents = isPastHero ? 'none' : 'auto';
+				}
+				if (heroTransitionContainer) {
+					heroTransitionContainer.style.opacity = isPastHero ? '0' : '1';
+					heroTransitionContainer.style.pointerEvents = isPastHero ? 'none' : 'auto';
+				}
+				if (heroFooter) {
+					heroFooter.style.opacity = isPastHero ? '0' : '1';
+					heroFooter.style.pointerEvents = isPastHero ? 'none' : 'auto';
+				}
+				if (scrollIndicator) {
+					scrollIndicator.style.opacity = isPastHero ? '0' : '1';
+				}
+			}
+
+			// Bucle de renderizado continuo a 60 FPS con LERP suave (factor ~0.08)
+			function animationLoop() {
+				// Interpolación matemática (LERP) para fluidez cinemática en ambas direcciones
+				const lerpFactor = 0.08;
+				currentInterpolatedFrame += (targetFrame - currentInterpolatedFrame) * lerpFactor;
+
+				// Pasar el valor flotante continuo a renderCurrentFrame para crossfades perfectos
+				renderCurrentFrame(currentInterpolatedFrame);
+
+				// Sincronizar bloques de texto de manera continua con el valor interpolado
+				const interpolatedProgress = (currentInterpolatedFrame - 1) / (TOTAL_FRAMES - 1);
+				updateTextBlocks(interpolatedProgress);
+
+				requestAnimationFrame(animationLoop);
+			}
+
+			// Precarga progresiva e inteligente de los 175 fotogramas
+			function startPreloading() {
+				// 1. Cargar de inmediato los primeros 10 fotogramas para disponibilidad instantánea
+				for (let i = 1; i <= Math.min(10, TOTAL_FRAMES); i++) {
+					preloadSingleFrame(i);
+				}
+
+				// 2. Cargar fotogramas clave y fotogramas críticos de micro-crossfade tempranamente
+				const keyFrames = [20, 35, 36, 37, 38, 39, 50, 65, 80, 100, 120, 131, 132, 134, 136, 137, 150, 165, 175];
+				for (const kf of keyFrames) {
+					if (!loadedStatus[kf]) preloadSingleFrame(kf);
+				}
+
+				// 3. Precargar el resto progresivamente con requestIdleCallback o microtareas
+				let nextToLoad = 11;
+				function loadBatch() {
+					let count = 0;
+					while (nextToLoad <= TOTAL_FRAMES && count < 6) {
+						if (!loadedStatus[nextToLoad]) {
+							preloadSingleFrame(nextToLoad);
+							count++;
+						}
+						nextToLoad++;
+					}
+
+					if (nextToLoad <= TOTAL_FRAMES) {
+						if ('requestIdleCallback' in window) {
+							(window as any).requestIdleCallback(loadBatch, { timeout: 100 });
+						} else {
+							setTimeout(loadBatch, 25);
+						}
+					}
+				}
+
+				if ('requestIdleCallback' in window) {
+					(window as any).requestIdleCallback(loadBatch, { timeout: 200 });
+				} else {
+					setTimeout(loadBatch, 50);
+				}
+			}
+
+			function preloadSingleFrame(index: number) {
+				if (images[index] || loadedStatus[index]) return;
+
+				const img = new Image();
+				images[index] = img;
+
+				img.onload = () => {
+					loadedStatus[index] = true;
+					totalLoaded++;
+
+					// Si es el primer fotograma o el fotograma actual inicial, renderizar de inmediato
+					if (index === 1 || lastRenderedIndex === -1) {
+						renderCurrentFrame(1, true);
+					}
+				};
+
+				img.src = getFramePath(index);
+			}
+
+			// Inicialización del sistema
+			window.addEventListener('resize', resizeCanvas, { passive: true });
+			window.addEventListener('scroll', onScroll, { passive: true });
+
+			// Control del menú móvil desplegable
+			const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+			const mobileMenu = document.getElementById('mobileMenu');
+			const mobileNavLinks = document.querySelectorAll('.mobileNavLink');
+
+			function toggleMobileMenu() {
+				if (!mobileMenu) return;
+				const isHidden = mobileMenu.classList.contains('hidden');
+				if (isHidden) {
+					mobileMenu.classList.remove('hidden');
+					void mobileMenu.offsetWidth;
+					mobileMenu.classList.remove('opacity-0');
+				} else {
+					mobileMenu.classList.add('opacity-0');
+					setTimeout(() => {
+						mobileMenu.classList.add('hidden');
+					}, 250);
+				}
+			}
+
+			if (mobileMenuBtn) {
+				mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+			}
+
+			mobileNavLinks.forEach((link) => {
+				link.addEventListener('click', () => {
+					if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+						toggleMobileMenu();
+					}
+				});
+			});
+
+			// Disparar configuración inicial
+			resizeCanvas();
+			onScroll();
+			startPreloading();
+			requestAnimationFrame(animationLoop);
+		</script>
+	</body>
+</html>

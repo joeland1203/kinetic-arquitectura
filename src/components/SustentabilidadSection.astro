@@ -1,0 +1,212 @@
+---
+// src/components/SustentabilidadSection.astro
+---
+
+<section id="sustentabilidad" class="relative w-full bg-[#080808] text-neutral-100 py-24 md:py-32 px-6 md:px-12 border-t border-white/10">
+	<!-- Retícula sobria -->
+	<div class="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#ffffff04_1px,transparent_1px),linear-gradient(to_bottom,#ffffff04_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+
+	<div class="max-w-7xl mx-auto relative z-10 space-y-16 md:space-y-24">
+		
+		<!-- Encabezado de Sección -->
+		<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 border-b border-white/10 pb-10">
+			<div class="space-y-3 max-w-2xl">
+				<div class="font-mono text-[10px] tracking-[0.3em] text-neutral-400 uppercase">
+					03 / ARQUITECTURA BIOCLIMÁTICA & IMPACTO
+				</div>
+				<h2 class="font-display text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-white leading-[1.05]">
+					EFICIENCIA TERMODINÁMICA &<br />
+					<span class="text-neutral-500">CICLO DE VIDA</span>
+				</h2>
+				<p class="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed max-w-xl pt-1">
+					Cuantificación de desempeño ambiental basada en el balance térmico de masa, simulación de sombras en heliodón digital y análisis de ciclo de vida (ACV / LCA). El confort humano se alcanza por diseño pasivo, reduciendo la dependencia electromecánica.
+				</p>
+			</div>
+
+			<!-- Metadatos de Protocolo Ambiental -->
+			<div class="flex flex-col font-mono text-[11px] text-neutral-500 space-y-1 border-l border-white/10 pl-6 lg:pl-8">
+				<span class="text-neutral-300 tracking-wider">MATRIZ DE DESEMPEÑO PASIVO</span>
+				<span>ESTÁNDARES: ASHRAE 55-2020 • ASHRAE 90.1-2022</span>
+				<span>AUDITORÍA AMBIENTAL: ISO 14040 / ISO 14044</span>
+			</div>
+		</div>
+
+		<!-- Layout Asimétrico: Auditoría Cuantitativa + Tabla de Certificaciones -->
+		<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+			
+			<!-- Columna Izquierda: Tres Fichas Técnicas de Desempeño (7 Cols) -->
+			<div class="lg:col-span-7 space-y-6">
+				
+				<!-- Ficha 03.1: -45% Consumo Energético -->
+				<div class="border border-white/10 bg-[#111111] p-8 space-y-4">
+					<div class="flex items-center justify-between font-mono text-xs border-b border-white/10 pb-3">
+						<span class="text-white font-medium">03.1 / BALANCE TÉRMICO PASIVO</span>
+						<span class="text-[10px] text-neutral-500">ENERGY USE INTENSITY (EUI)</span>
+					</div>
+
+					<div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+						<h3 class="font-display text-xl font-normal text-white">
+							Reducción de Consumo Energético
+						</h3>
+						<span class="font-mono text-2xl text-white font-medium">-45% kWh/m²</span>
+					</div>
+
+					<p class="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed">
+						Estrategias pasivas de enfriamiento por convección natural e inercia de envolventes pesadas. El cálculo solar paramétrico determina la profundidad de aleros y lamas para bloquear la radiación crítica de verano mientras permite la ganancia solar pasiva invernal.
+					</p>
+
+					<div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-3 border-t border-white/5 font-mono text-[10px]">
+						<div>
+							<span class="text-neutral-500 block">EUI PROMEDIO</span>
+							<span class="text-neutral-300 font-medium">78 kWh/m² año</span>
+						</div>
+						<div>
+							<span class="text-neutral-500 block">HORAS CONFORT PASIVO</span>
+							<span class="text-neutral-300 font-medium">68% sin HVAC activo</span>
+						</div>
+						<div>
+							<span class="text-neutral-500 block">GENERACIÓN BIPV</span>
+							<span class="text-neutral-300 font-medium">38.4 kWp integrado</span>
+						</div>
+					</div>
+				</div>
+
+				<!-- Ficha 03.2: 100% Recolección Pluvial -->
+				<div class="border border-white/10 bg-[#111111] p-8 space-y-4">
+					<div class="flex items-center justify-between font-mono text-xs border-b border-white/10 pb-3">
+						<span class="text-white font-medium">03.2 / CIRCUITO HÍDRICO CERRADO</span>
+						<span class="text-[10px] text-neutral-500">NET ZERO WATER PROTOCOL</span>
+					</div>
+
+					<div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+						<h3 class="font-display text-xl font-normal text-white">
+							Recolección & Fitodepuración Pluvial
+						</h3>
+						<span class="font-mono text-2xl text-white font-medium">100% Reutilizado</span>
+					</div>
+
+					<p class="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed">
+						Captación integral en cubiertas y terrazas filtrantes conectadas a cisternas de retención de 480 m³. El agua pluvial y gris se depura in situ mediante lechos de juncos filtrantes y desinfección UV, reutilizándose en descargas sanitarias y riego de microclimas sin verter a la red pública.
+					</p>
+
+					<div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-3 border-t border-white/5 font-mono text-[10px]">
+						<div>
+							<span class="text-neutral-500 block">CAPACIDAD DE RETENCIÓN</span>
+							<span class="text-neutral-300 font-medium">480,000 litros</span>
+						</div>
+						<div>
+							<span class="text-neutral-500 block">AHORRO AGUA POTABLE</span>
+							<span class="text-neutral-300 font-medium">-72% consumo red</span>
+						</div>
+						<div>
+							<span class="text-neutral-500 block">DESCARGA PLUVIAL NETA</span>
+							<span class="text-neutral-300 font-medium">0 m³ escorrentía</span>
+						</div>
+					</div>
+				</div>
+
+				<!-- Ficha 03.3: Materiales de Huella Neutra -->
+				<div class="border border-white/10 bg-[#111111] p-8 space-y-4">
+					<div class="flex items-center justify-between font-mono text-xs border-b border-white/10 pb-3">
+						<span class="text-white font-medium">03.3 / ANÁLISIS DE CICLO DE VIDA (LCA)</span>
+						<span class="text-[10px] text-neutral-500">EMBODIED CARBON SCOPE A1-A3</span>
+					</div>
+
+					<div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+						<h3 class="font-display text-xl font-normal text-white">
+							Materialidad de Huella Reducida
+						</h3>
+						<span class="font-mono text-2xl text-white font-medium">-48% CO₂e</span>
+					</div>
+
+					<p class="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed">
+						Selección de materiales con Declaración Ambiental de Producto (EPD) verificada. Sustitución de hasta 40% de clínker por escoria granulada en concretos estructurales, acero con 85% de contenido reciclado por horno de arco eléctrico y maderas con cadena de custodia FSC 100%.
+					</p>
+
+					<div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-3 border-t border-white/5 font-mono text-[10px]">
+						<div>
+							<span class="text-neutral-500 block">CARBONO EMBEBIDO</span>
+							<span class="text-neutral-300 font-medium">285 kg CO₂e/m²</span>
+						</div>
+						<div>
+							<span class="text-neutral-500 block">CONTENIDO RECICLADO</span>
+							<span class="text-neutral-300 font-medium">&gt; 65% masa total</span>
+						</div>
+						<div>
+							<span class="text-neutral-500 block">DISTANCIA DE SUMINISTRO</span>
+							<span class="text-neutral-300 font-medium">&lt; 350 km regional</span>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<!-- Columna Derecha: Tabla de Certificaciones & Protocolos Auditados (5 Cols) -->
+			<div class="lg:col-span-5 space-y-6">
+				
+				<div class="border border-white/10 bg-[#111111] p-8 space-y-6">
+					<div class="font-mono text-[10px] tracking-widest text-neutral-500 uppercase border-b border-white/10 pb-3 flex justify-between">
+						<span>AUDITORÍA EXTERNA</span>
+						<span>REGISTRO NORMATIVO</span>
+					</div>
+
+					<h3 class="font-display text-2xl font-normal text-white">
+						Cédula de Certificaciones Internacionales
+					</h3>
+
+					<p class="text-xs text-neutral-400 font-light leading-relaxed">
+						Protocolos de verificación por terceras partes independientes que avalan la habitabilidad, calidad del aire interior y eficiencia de recursos en cada etapa de vida útil.
+					</p>
+
+					<!-- Tabla de Criterios -->
+					<div class="divide-y divide-white/10 font-mono text-xs pt-2">
+						
+						<div class="py-4 space-y-1">
+							<div class="flex justify-between items-baseline">
+								<span class="text-white font-medium">LEED v4.1 BD+C</span>
+								<span class="text-neutral-400 text-[11px]">PLATINUM (&ge; 82 pts)</span>
+							</div>
+							<p class="text-[10px] text-neutral-500 font-sans">
+								U.S. Green Building Council: Máximo puntaje en optimización energética pasiva y calidad ambiental interior.
+							</p>
+						</div>
+
+						<div class="py-4 space-y-1">
+							<div class="flex justify-between items-baseline">
+								<span class="text-white font-medium">EDGE Buildings</span>
+								<span class="text-neutral-400 text-[11px]">ADVANCED (&ge; 40% Ahorro)</span>
+							</div>
+							<p class="text-[10px] text-neutral-500 font-sans">
+								International Finance Corporation (Banco Mundial): Eficiencia operativa en energía, agua y carbono embebido.
+							</p>
+						</div>
+
+						<div class="py-4 space-y-1">
+							<div class="flex justify-between items-baseline">
+								<span class="text-white font-medium">WELL Building Standard</span>
+								<span class="text-neutral-400 text-[11px]">CERTIFICADO GOLD</span>
+							</div>
+							<p class="text-[10px] text-neutral-500 font-sans">
+								International WELL Building Institute: Confort térmico, iluminación circadiana y renovación de aire con filtros MERV 14.
+							</p>
+						</div>
+
+						<div class="py-4 space-y-1">
+							<div class="flex justify-between items-baseline">
+								<span class="text-white font-medium">World GBC Protocol</span>
+								<span class="text-neutral-400 text-[11px]">NET ZERO CARBON</span>
+							</div>
+							<p class="text-[10px] text-neutral-500 font-sans">
+								Compromiso vinculante de descarbonización de operaciones mediante autogeneración fotovoltaica y contratos PPA verdes.
+							</p>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+</section>

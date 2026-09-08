@@ -1,0 +1,299 @@
+---
+// src/components/ContactoSection.astro
+---
+
+<section id="contacto" class="relative w-full bg-[#080808] text-neutral-100 pt-24 md:pt-32 pb-12 px-6 md:px-12 border-t border-white/10">
+	<!-- Retícula sobria -->
+	<div class="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#ffffff04_1px,transparent_1px),linear-gradient(to_bottom,#ffffff04_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+
+	<div class="max-w-7xl mx-auto relative z-10 space-y-20">
+		
+		<!-- Encabezado de Sección -->
+		<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 border-b border-white/10 pb-10">
+			<div class="space-y-3 max-w-2xl">
+				<div class="font-mono text-[10px] tracking-[0.3em] text-neutral-400 uppercase">
+					04 / CONSULTORÍA ESTRUCTURAL & DESARROLLO
+				</div>
+				<h2 class="font-display text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-white leading-[1.05]">
+					INICIAR PROTOCOLO DE<br />
+					<span class="text-neutral-500">ANTEPROYECTO</span>
+				</h2>
+				<p class="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed max-w-xl pt-1">
+					Recepción de memorias descriptivas, estudios de mecánica de suelos y requerimientos de inversión para desarrollos verticales, infraestructura bioclimática y dictámenes estructurales.
+				</p>
+			</div>
+
+			<!-- Metadatos de Atención -->
+			<div class="flex flex-col font-mono text-[11px] text-neutral-500 space-y-1 border-l border-white/10 pl-6 lg:pl-8">
+				<span class="text-neutral-300 tracking-wider">MESA TÉCNICA DE PROYECTOS</span>
+				<span>ACUERDO DE CONFIDENCIALIDAD (NDA) BILATERAL</span>
+				<span>TIEMPO ESTIMADO DE EVALUACIÓN: 48 HORAS</span>
+			</div>
+		</div>
+
+		<!-- Grid: Formulario Minimalista + Colofón de Estudio -->
+		<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+			
+			<!-- Columna Izquierda: Formulario Técnico de Admisión (7 Cols) -->
+			<div class="lg:col-span-7 bg-[#111111] border border-white/10 p-8 sm:p-12">
+				
+				<form id="contactForm" class="space-y-8" onsubmit="return false;">
+					
+					<div class="border-b border-white/10 pb-4">
+						<span class="font-mono text-[10px] tracking-widest text-neutral-500 uppercase block">
+							CÉDULA DE ADMISIÓN TÉCNICA
+						</span>
+						<h3 class="font-display text-xl font-normal text-white mt-1">
+							Datos del Proyecto o Fideicomiso
+						</h3>
+					</div>
+
+					<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+						<!-- Campo Nombre Completo -->
+						<div class="space-y-2">
+							<label for="fullName" class="block font-mono text-[10px] uppercase tracking-widest text-neutral-400">
+								Titular o Representante Técnico *
+							</label>
+							<input
+								type="text"
+								id="fullName"
+								name="fullName"
+								required
+								placeholder="Arq. / Ing. / Nombre completo"
+								class="w-full bg-neutral-950 border border-white/10 px-4 py-3.5 text-xs font-mono text-white placeholder-neutral-600 focus:outline-none focus:border-white/40 transition-colors"
+							/>
+						</div>
+
+						<!-- Campo Correo Corporativo -->
+						<div class="space-y-2">
+							<label for="corporateEmail" class="block font-mono text-[10px] uppercase tracking-widest text-neutral-400">
+								Correo Corporativo Institucional *
+							</label>
+							<input
+								type="email"
+								id="corporateEmail"
+								name="corporateEmail"
+								required
+								placeholder="contacto@fondo-desarrollo.com"
+								class="w-full bg-neutral-950 border border-white/10 px-4 py-3.5 text-xs font-mono text-white placeholder-neutral-600 focus:outline-none focus:border-white/40 transition-colors"
+							/>
+						</div>
+					</div>
+
+					<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+						<!-- Tipo de Proyecto -->
+						<div class="space-y-2">
+							<label for="projectType" class="block font-mono text-[10px] uppercase tracking-widest text-neutral-400">
+								Tipología Estructural *
+							</label>
+							<div class="relative">
+								<select
+									id="projectType"
+									name="projectType"
+									required
+									class="w-full bg-neutral-950 border border-white/10 px-4 py-3.5 text-xs font-mono text-white appearance-none focus:outline-none focus:border-white/40 transition-colors cursor-pointer"
+								>
+									<option value="" disabled selected class="bg-neutral-900 text-neutral-500">Seleccionar Tipología</option>
+									<option value="vertical" class="bg-neutral-900 text-white">Desarrollo Vertical &gt; 30 Niveles</option>
+									<option value="voladizo" class="bg-neutral-900 text-white">Estructura en Voladizo / Cantilever</option>
+									<option value="bioclimatico" class="bg-neutral-900 text-white">Complejo Bioclimático / Piel Paramétrica</option>
+									<option value="bim" class="bg-neutral-900 text-white">Consultoría de Ingeniería &amp; BIM LOD 400</option>
+								</select>
+								<div class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 text-[10px]">
+									▼
+								</div>
+							</div>
+						</div>
+
+						<!-- Presupuesto Estimado / Escala -->
+						<div class="space-y-2">
+							<label for="budgetRange" class="block font-mono text-[10px] uppercase tracking-widest text-neutral-400">
+								Superficie / Escala de Desplante *
+							</label>
+							<div class="relative">
+								<select
+									id="budgetRange"
+									name="budgetRange"
+									required
+									class="w-full bg-neutral-950 border border-white/10 px-4 py-3.5 text-xs font-mono text-white appearance-none focus:outline-none focus:border-white/40 transition-colors cursor-pointer"
+								>
+									<option value="" disabled selected class="bg-neutral-900 text-neutral-500">Seleccionar Escala</option>
+									<option value="1k-10k" class="bg-neutral-900 text-white">1,000 — 10,000 m² construidos</option>
+									<option value="10k-50k" class="bg-neutral-900 text-white">10,000 — 50,000 m² construidos</option>
+									<option value="50k+" class="bg-neutral-900 text-white">&gt; 50,000 m² (Gran Complejo)</option>
+									<option value="dictamen" class="bg-neutral-900 text-white">Dictamen Estructural Específico</option>
+								</select>
+								<div class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 text-[10px]">
+									▼
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Mensaje / Requerimientos -->
+					<div class="space-y-2">
+						<label for="message" class="block font-mono text-[10px] uppercase tracking-widest text-neutral-400">
+							Descripción del Programa o Coordenadas de Predio
+						</label>
+						<textarea
+							id="message"
+							name="message"
+							rows="4"
+							placeholder="Indique ubicación del predio, mecánica de suelos disponible, tipo de cimentación prevista y requerimientos de claros libres..."
+							class="w-full bg-neutral-950 border border-white/10 px-4 py-3.5 text-xs font-mono text-white placeholder-neutral-600 focus:outline-none focus:border-white/40 transition-colors resize-none"
+						></textarea>
+					</div>
+
+					<!-- Botón de Envío -->
+					<div class="pt-2">
+						<button
+							type="submit"
+							id="submitFormBtn"
+							class="w-full cursor-pointer inline-flex items-center justify-center space-x-3 px-8 py-4 text-xs font-mono tracking-[0.25em] uppercase text-black bg-white hover:bg-neutral-200 transition-colors border border-white"
+						>
+							<span id="btnSubmitText">INGRESAR ANTEPROYECTO A REVISIÓN</span>
+							<span class="text-sm">→</span>
+						</button>
+					</div>
+
+					<!-- Mensaje de Feedback -->
+					<div id="formFeedback" class="hidden p-4 bg-neutral-950 border border-white/20 text-neutral-300 text-xs font-mono">
+						✓ Registro ingresado a la mesa técnica. Se ha emitido folio de seguimiento confidencial. Respuesta formal en un lapso no mayor a 48 horas hábiles.
+					</div>
+
+				</form>
+
+			</div>
+
+			<!-- Columna Derecha: Colofón & Oficinas Técnicas (5 Cols) -->
+			<div class="lg:col-span-5 space-y-8">
+				
+				<!-- Atelier CDMX -->
+				<div class="border border-white/10 bg-[#111111] p-8 space-y-4">
+					<div class="flex items-center justify-between font-mono text-[10px] text-neutral-500 border-b border-white/10 pb-3">
+						<span>SEDE CENTRAL // CDMX</span>
+						<span>COORD. 19.4326° N, 99.1332° W</span>
+					</div>
+					<h3 class="font-display text-xl font-normal text-white">
+						Atelier de Proyecto &amp; Estructura
+					</h3>
+					<div class="text-xs text-neutral-400 font-light leading-relaxed space-y-1 font-mono pt-1">
+						<p class="text-neutral-300">Paseo de las Palmas 405, Piso 18</p>
+						<p>Lomas de Chapultepec, Miguel Hidalgo, 11000 CDMX</p>
+						<p class="pt-2 text-white">T: +52 (55) 8432-9000</p>
+						<p>E: proyectos@kinetic-arquitectura.com</p>
+					</div>
+				</div>
+
+				<!-- Laboratorio Zürich -->
+				<div class="border border-white/10 bg-[#111111] p-8 space-y-4">
+					<div class="flex items-center justify-between font-mono text-[10px] text-neutral-500 border-b border-white/10 pb-3">
+						<span>LABORATORIO DE CÁLCULO // SUIZA</span>
+						<span>COORD. 47.3769° N, 8.5417° E</span>
+					</div>
+					<h3 class="font-display text-xl font-normal text-white">
+						Zürich Structural Lab
+					</h3>
+					<div class="text-xs text-neutral-400 font-light leading-relaxed space-y-1 font-mono pt-1">
+						<p class="text-neutral-300">Bahnhofstrasse 18, 8001</p>
+						<p>Zürich, Switzerland</p>
+						<p class="pt-2 text-white">T: +41 44 214 8800</p>
+						<p>E: lab.zurich@kinetic-arquitectura.com</p>
+					</div>
+				</div>
+
+				<!-- Protocolo de Atención -->
+				<div class="border border-white/10 bg-neutral-950 p-6 font-mono text-xs space-y-2">
+					<span class="text-[10px] uppercase tracking-widest text-neutral-500 block">
+						PROTOCOLO DE REUNIONES TÉCNICAS
+					</span>
+					<div class="text-neutral-300">
+						Lunes a Viernes: 08:30 — 18:30 hrs (GMT-6)
+					</div>
+					<p class="text-[10px] text-neutral-500 font-sans leading-relaxed pt-1">
+						Sesiones presenciales en taller de maquetas bajo agenda previa y suscripción de acuerdo de confidencialidad para anteproyectos en concurso.
+					</p>
+				</div>
+
+			</div>
+
+		</div>
+
+		<!-- Footer Editorial de la Firma -->
+		<footer class="pt-16 border-t border-white/10 space-y-10">
+			<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+				
+				<div class="space-y-1">
+					<div class="flex items-center space-x-3">
+						<div class="w-2 h-2 bg-white rounded-full"></div>
+						<span class="font-display tracking-[0.25em] text-white text-sm uppercase">
+							KINETIC ARQUITECTURA
+						</span>
+					</div>
+					<p class="font-mono text-[10px] text-neutral-500 tracking-widest uppercase">
+						CÁLCULO ESTRUCTURAL, EDIFICACIÓN VERTICAL &amp; ARQUITECTURA BIOCLIMÁTICA
+					</p>
+				</div>
+
+				<!-- Vínculos de Archivo & Redes -->
+				<div class="flex items-center space-x-6 font-mono text-xs tracking-widest uppercase text-neutral-400">
+					<a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
+						Instagram
+					</a>
+					<span class="text-neutral-700">•</span>
+					<a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
+						LinkedIn
+					</a>
+					<span class="text-neutral-700">•</span>
+					<a href="https://behance.net" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
+						Behance
+					</a>
+				</div>
+
+			</div>
+
+			<!-- Colofón Legal -->
+			<div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] font-mono text-neutral-600 border-t border-white/5 pt-6">
+				<div>
+					&copy; 2026 KINETIC STUDIO S.A.P.I. DE C.V. — REGISTRO DE DERECHOS RESERVADOS.
+				</div>
+				<div class="flex items-center space-x-6">
+					<a href="#contacto" class="hover:text-neutral-400 transition-colors">Aviso de Privacidad</a>
+					<a href="#contacto" class="hover:text-neutral-400 transition-colors">Normativa Ética &amp; Compliance</a>
+					<a href="#contacto" class="hover:text-neutral-400 transition-colors">Términos de Consulta</a>
+				</div>
+			</div>
+		</footer>
+
+	</div>
+</section>
+
+<!-- Script para interactividad del formulario de contacto -->
+<script>
+	const contactForm = document.getElementById('contactForm') as HTMLFormElement;
+	const submitFormBtn = document.getElementById('submitFormBtn') as HTMLButtonElement;
+	const btnSubmitText = document.getElementById('btnSubmitText') as HTMLSpanElement;
+	const formFeedback = document.getElementById('formFeedback') as HTMLDivElement;
+
+	if (contactForm && submitFormBtn) {
+		contactForm.addEventListener('submit', (e) => {
+			e.preventDefault();
+
+			submitFormBtn.disabled = true;
+			if (btnSubmitText) btnSubmitText.textContent = 'REGISTRANDO ANTEPROYECTO...';
+
+			setTimeout(() => {
+				contactForm.reset();
+				submitFormBtn.disabled = false;
+				if (btnSubmitText) btnSubmitText.textContent = 'ANTEPROYECTO REGISTRADO';
+				if (formFeedback) {
+					formFeedback.classList.remove('hidden');
+					formFeedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+				}
+				setTimeout(() => {
+					if (btnSubmitText) btnSubmitText.textContent = 'INGRESAR ANTEPROYECTO A REVISIÓN';
+				}, 4000);
+			}, 700);
+		});
+	}
+</script>
